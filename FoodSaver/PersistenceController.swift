@@ -1,8 +1,16 @@
-//
-//  PersistenceController.swift
-//  FoodSaver
-//
-//  Created by Patrick Brown on 7/11/24.
-//
+import CoreData
 
-import Foundation
+struct PersistenceController {
+    static let shared = PersistenceController()
+
+    let container: NSPersistentContainer
+
+    init() {
+        container = NSPersistentContainer(name: "FoodSaverModel")
+        container.loadPersistentStores { description, error in
+            if let error = error {
+                fatalError("Unresolved error \(error)")
+            }
+        }
+    }
+}

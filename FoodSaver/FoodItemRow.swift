@@ -1,8 +1,21 @@
-//
-//  FoodItemRow.swift
-//  FoodSaver
-//
-//  Created by Patrick Brown on 7/11/24.
-//
+import SwiftUI
 
-import Foundation
+struct FoodItemRow: View {
+    let foodItem: FoodItem
+
+    var body: some View {
+        HStack {
+            Text(foodItem.name)
+                .font(.headline)
+            Spacer()
+            Text(foodItem.category)
+                .font(.subheadline)
+            Spacer()
+            Text(foodItem.location)
+                .font(.subheadline)
+            Spacer()
+            Text(foodItem.statusEmoji)
+        }
+        .padding()
+    }
+}

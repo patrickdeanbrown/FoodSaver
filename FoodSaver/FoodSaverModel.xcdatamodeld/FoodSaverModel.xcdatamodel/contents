@@ -1,2 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22758" systemVersion="23F79" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier=""/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22758" systemVersion="23F79" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
+    <entity name="FoodItem" representedClassName="FoodItem" syncable="YES">
+        <attribute name="bestBeforeDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="category" optional="YES" attributeType="String"/>
+        <attribute name="location" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="picture" optional="YES" attributeType="Binary"/>
+        <attribute name="purchaseDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="status" optional="YES" attributeType="String"/>
+    </entity>
+</model>

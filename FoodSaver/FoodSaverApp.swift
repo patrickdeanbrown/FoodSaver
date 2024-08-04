@@ -1,17 +1,30 @@
-//
-//  FoodSaverApp.swift
-//  FoodSaver
-//
-//  Created by Patrick Brown on 7/11/24.
-//
-
 import SwiftUI
 
 @main
 struct FoodSaverApp: App {
+    @StateObject private var viewModel = FoodViewModel()
+    @State private var isDataLoaded = false
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            if isDataLoaded {
+                MainView()
+                    .environmentObject(viewModel)
+            } else {
+                SplashScreen()
+                    .onAppear {
+                        loadData()
+                    }
+            }
+        }
+    }
+
+    private func loadData() {
+        DispatchQueue.global(qos: .userInitiated).async {
+            viewModel.fetchFoodItems()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                isDataLoaded = true
+            }
         }
     }
 }
