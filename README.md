@@ -25,31 +25,22 @@ The product specification is a living document designed to maintain the app’s 
 
 ## 🗂️ Project Structure
 
-FoodSaver
-├── FoodSaverApp.swift              # Entry point for the app, manages main navigation
-├── MainView.swift                  # Main interface of the app, displaying the list of food items
-├── AddModifyItemView.swift         # Interface for adding or modifying food items
-├── ReadOnlyItemView.swift          # Displays detailed, read-only view of food items
-├── FoodItem.swift                  # SwiftData model for food items
-├── FoodItemTemp.swift              # Temporary data model for managing unsaved changes
-├── FoodItemRow.swift               # UI component for listing food items in the main view
-├── FoodViewPhotoBox.swift          # UI component for displaying food images with rounded borders
-├── SearchBar.swift                 # Custom search bar with search category picker
-├── ImagePicker.swift               # Custom image picker for capturing food item images
-├── SplashScreenView.swift          # Initial splash screen with app logo
-├── FoodSaverModel.xcdatamodeld     # CoreData model for persistent data storage
-│   └── FoodSaverModel.xcdatamodel
-├── Assets.xcassets                 # App assets, including icons and colors
-│   ├── Icon.png
-│   ├── AppIcon.appiconset
-│   ├── AccentColor.colorset
-│   └── Contents.json
-├── Preview Content                 # Preview assets for SwiftUI previews
-│   └── Preview Assets.xcassets
-├── food_saver_app_icon.png         # Custom app icon
-├── FoodSaverTests                  # Unit tests for the app
-│   └── FoodSaverTests.swift
-└── ContentView.swift               # Wrapper for the main content view
+## 🗂️ Project Structure
+
+| File/Directory                | Description                                           |
+|-------------------------------|-------------------------------------------------------|
+| **FoodSaverApp.swift**         | Entry point for the app, manages main navigation      |
+| **MainView.swift**             | Main interface of the app, displaying the list of food items |
+| **AddModifyItemView.swift**    | Interface for adding or modifying food items          |
+| **ReadOnlyItemView.swift**     | Displays detailed, read-only view of food items       |
+| **FoodItem.swift**             | SwiftData model for food items                        |
+| **FoodItemTemp.swift**         | Temporary data model for managing unsaved changes     |
+| **FoodItemRow.swift**          | UI component for listing food items in the main view  |
+| **FoodViewPhotoBox.swift**     | UI component for displaying food images with rounded borders |
+| **SearchBar.swift**            | Custom search bar with search category picker         |
+| **ImagePicker.swift**          | Custom image picker for capturing food item images    |
+| **SplashScreenView.swift**     | Initial splash screen with app logo                   |
+
 
 ## 🤝 Contributing
 
