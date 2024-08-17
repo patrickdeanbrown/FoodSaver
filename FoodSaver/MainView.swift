@@ -1,15 +1,48 @@
 import SwiftUI
+import SwiftData
 
 struct MainView: View {
-    @EnvironmentObject var viewModel: FoodViewModel
-    @State private var showingReadOnlyItem = false
+    @Environment(\.modelContext) private var context
+    @Query var foodItems: [FoodItem]
+
+    @State private var searchText: String = ""
+    @State private var selectedCategory: String = "Name"
+    @State private var selectedFoodItem: FoodItem?
     @State private var selectedStatus: String = "All"
+    @State private var showingReadOnlyItem = false
     @State private var showingAddModifyItem = false
+
+    var filteredFoodItems: [FoodItem] {
+        // Initial array of items
+        var filtered: [FoodItem] = foodItems
+        
+        // Filter by search text if it is not empty
+        if !searchText.isEmpty {
+            switch selectedCategory {
+            case "Name":
+                filtered = filtered.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
+            case "Category":
+                filtered = filtered.filter { $0.category.localizedCaseInsensitiveContains(searchText) }
+            case "Location":
+                filtered = filtered.filter { $0.location.localizedCaseInsensitiveContains(searchText) }
+            default:
+                break
+            }
+        }
+
+        // Filter by status if a specific status is selected
+        if selectedStatus != "All" {
+            filtered = filtered.filter { $0.status == selectedStatus }
+        }
+
+        // Sort the filtered results by name
+        return filtered.sorted { $0.name < $1.name }
+    }
 
     var body: some View {
         NavigationView {
             VStack {
-                SearchBar(text: $viewModel.searchText, selectedCategory: $viewModel.selectedCategory)
+                SearchBar(text: $searchText, selectedCategory: $selectedCategory)
                     .padding(.horizontal)
 
                 Picker("Status", selection: $selectedStatus) {
@@ -22,22 +55,20 @@ struct MainView: View {
                 .padding(.horizontal)
 
                 List {
-                    ForEach(viewModel.filteredFoodItems.filter { item in
-                        selectedStatus == "All" || item.status == selectedStatus
-                    }) { foodItem in
+                    ForEach(filteredFoodItems) { foodItem in
                         FoodItemRow(foodItem: foodItem)
                             .onTapGesture {
-                                viewModel.selectFoodItem(foodItem)
+                                selectedFoodItem = foodItem
                                 showingReadOnlyItem = true
                             }
                             .swipeActions(edge: .trailing) {
                                 Button("Delete") {
-                                    viewModel.deleteFoodItem(foodItem)
+                                    context.delete(foodItem)
+                                    try? context.save()
                                 }
                                 .tint(.red)
 
                                 Button("Modify") {
-                                    viewModel.modifyFoodItem(foodItem)
                                     showingAddModifyItem = true
                                 }
                                 .tint(.blue)
@@ -50,7 +81,9 @@ struct MainView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
-                        viewModel.addNewFoodItem()
+                        let newItem = FoodItem()
+                        context.insert(newItem)
+                        selectedFoodItem = newItem
                         showingAddModifyItem = true
                     }) {
                         Image(systemName: "plus.circle.fill")
@@ -59,13 +92,13 @@ struct MainView: View {
                 }
             }
             .sheet(isPresented: $showingReadOnlyItem) {
-                if let foodItem = viewModel.selectedFoodItem {
+                if let foodItem = selectedFoodItem {
                     ReadOnlyItemView(foodItem: foodItem)
                 }
             }
             .sheet(isPresented: $showingAddModifyItem) {
-                if let foodItem = viewModel.selectedFoodItem {
-                    AddModifyItemView(viewModel: viewModel, foodItem: foodItem)
+                if let foodItem = selectedFoodItem {
+                    AddModifyItemView(foodItem: foodItem)
                 }
             }
         }

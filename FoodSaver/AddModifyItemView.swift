@@ -1,28 +1,40 @@
 import SwiftUI
+import SwiftData
 
 struct AddModifyItemView: View {
-    @ObservedObject var viewModel: FoodViewModel
-    @ObservedObject var foodItem: FoodItem
-
     @Environment(\.presentationMode) var presentationMode
-    @State private var showImagePicker = false
-    @State private var inputImage: UIImage?
+    @Environment(\.modelContext) private var context
+    @State private var temporaryFoodItem: FoodItemTemp
+
+    var originalFoodItem: FoodItem?
+    var isNewItem: Bool
+
+    init(foodItem: FoodItem? = nil) {
+        if let foodItem = foodItem {
+            self.originalFoodItem = foodItem
+            self._temporaryFoodItem = State(initialValue: FoodItemTemp(from: foodItem))
+            self.isNewItem = false
+        } else {
+            self._temporaryFoodItem = State(initialValue: FoodItemTemp())
+            self.isNewItem = true
+        }
+    }
 
     var body: some View {
         ScrollView {
             VStack {
-                Text("Add/Modify Food Item")
+                Text(isNewItem ? "Add Food Item" : "Modify Food Item")
                     .font(.largeTitle)
                     .padding()
 
-                TextField("Item Name", text: $foodItem.name)
+                TextField("Item Name", text: $temporaryFoodItem.name)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding()
 
                 Button(action: {
-                    showImagePicker = true
+                    temporaryFoodItem.showImagePicker = true
                 }) {
-                    if let imageData = foodItem.picture, let image = UIImage(data: imageData) {
+                    if let imageData = temporaryFoodItem.picture, let image = UIImage(data: imageData) {
                         Image(uiImage: image)
                             .makeFoodViewPhotoBox()
                     } else {
@@ -30,24 +42,25 @@ struct AddModifyItemView: View {
                             .makeFoodViewPhotoBox()
                     }
                 }
-                .sheet(isPresented: $showImagePicker) {
-                    ImagePicker(image: $inputImage, sourceType: .camera)
+                .sheet(isPresented: $temporaryFoodItem.showImagePicker) {
+                    ImagePicker(image: $temporaryFoodItem.inputImage, sourceType: .camera)
+                        .edgesIgnoringSafeArea(.all)
                 }
-                .onChange(of: inputImage) {
+                .onChange(of: temporaryFoodItem.inputImage) {
                     loadImage()
                 }
 
-                DatePicker("Best Before Date", selection: $foodItem.bestBeforeDate, displayedComponents: .date)
+                DatePicker("Best Before Date", selection: $temporaryFoodItem.bestBeforeDate, displayedComponents: .date)
                     .padding()
 
-                DatePicker("Purchase Date", selection: $foodItem.purchaseDate, displayedComponents: .date)
+                DatePicker("Purchase Date", selection: $temporaryFoodItem.purchaseDate, displayedComponents: .date)
                     .padding()
 
-                TextField("Category", text: $foodItem.category)
+                TextField("Category", text: $temporaryFoodItem.category)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding()
 
-                TextField("Location", text: $foodItem.location)
+                TextField("Location", text: $temporaryFoodItem.location)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding()
 
@@ -60,18 +73,39 @@ struct AddModifyItemView: View {
                     .padding()
 
                     Button("Save") {
-                        viewModel.saveContext()
+                        saveChanges()
                         presentationMode.wrappedValue.dismiss()
                     }
                     .padding()
                 }
             }
         }
-        .padding(.bottom, 50)  // Add padding to prevent overlap with keyboard
+        .padding(.bottom, 50)
     }
 
-    func loadImage() {
-        guard let inputImage = inputImage else { return }
-        foodItem.picture = inputImage.jpegData(compressionQuality: 0.8)
+    private func loadImage() {
+        guard let inputImage = temporaryFoodItem.inputImage else { return }
+        temporaryFoodItem.picture = inputImage.jpegData(compressionQuality: 0.8)
+    }
+
+    private func saveChanges() {
+        if isNewItem {
+            let newItem = FoodItem()
+            updateModel(newItem)
+            context.insert(newItem)
+        } else if let original = originalFoodItem {
+            updateModel(original)
+        }
+
+        try? context.save()
+    }
+
+    private func updateModel(_ foodItem: FoodItem) {
+        foodItem.name = temporaryFoodItem.name
+        foodItem.picture = temporaryFoodItem.picture
+        foodItem.bestBeforeDate = temporaryFoodItem.bestBeforeDate
+        foodItem.purchaseDate = temporaryFoodItem.purchaseDate
+        foodItem.category = temporaryFoodItem.category
+        foodItem.location = temporaryFoodItem.location
     }
 }

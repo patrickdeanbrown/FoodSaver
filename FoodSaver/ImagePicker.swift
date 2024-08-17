@@ -33,6 +33,7 @@ struct ImagePicker: UIViewControllerRepresentable {
         let picker = UIImagePickerController()
         picker.delegate = context.coordinator
         picker.sourceType = sourceType
+        picker.modalPresentationStyle = .fullScreen 
         return picker
     }
 

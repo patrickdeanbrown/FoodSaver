@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CB30C79F2C5F257500FDCBD1 /* FoodItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB30C79E2C5F257500FDCBD1 /* FoodItem.swift */; };
+		CB30C7A12C600D2A00FDCBD1 /* FoodItemTemp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB30C7A02C600D2A00FDCBD1 /* FoodItemTemp.swift */; };
 		CBDC8A952C40A8570043839D /* FoodSaverApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDC8A942C40A8570043839D /* FoodSaverApp.swift */; };
 		CBDC8A972C40A8570043839D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDC8A962C40A8570043839D /* ContentView.swift */; };
 		CBDC8A992C40A85B0043839D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBDC8A982C40A85B0043839D /* Assets.xcassets */; };
@@ -14,16 +16,11 @@
 		CBDC8AA62C40A85B0043839D /* FoodSaverTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDC8AA52C40A85B0043839D /* FoodSaverTests.swift */; };
 		CBDC8AB02C40A85B0043839D /* FoodSaverUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDC8AAF2C40A85B0043839D /* FoodSaverUITests.swift */; };
 		CBDC8AB22C40A85B0043839D /* FoodSaverUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDC8AB12C40A85B0043839D /* FoodSaverUITestsLaunchTests.swift */; };
-		CBDC8AC12C40A8F80043839D /* FoodViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDC8AC02C40A8F80043839D /* FoodViewModel.swift */; };
-		CBDC8AC32C40A9930043839D /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDC8AC22C40A9930043839D /* PersistenceController.swift */; };
 		CBDC8AC52C40A9E20043839D /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDC8AC42C40A9E20043839D /* MainView.swift */; };
 		CBDC8AC72C40AA530043839D /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDC8AC62C40AA530043839D /* SplashScreenView.swift */; };
 		CBDC8AC92C40AAAC0043839D /* AddModifyItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDC8AC82C40AAAC0043839D /* AddModifyItemView.swift */; };
 		CBDC8ACB2C40B19A0043839D /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDC8ACA2C40B19A0043839D /* SearchBar.swift */; };
 		CBDC8ACD2C40B1B40043839D /* FoodItemRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDC8ACC2C40B1B40043839D /* FoodItemRow.swift */; };
-		CBDC8AD72C40B95F0043839D /* FoodSaverModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CBDC8AD52C40B95F0043839D /* FoodSaverModel.xcdatamodeld */; };
-		CBDC8ADA2C40BB870043839D /* FoodItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDC8AD82C40BB870043839D /* FoodItem+CoreDataClass.swift */; };
-		CBDC8ADB2C40BB870043839D /* FoodItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDC8AD92C40BB870043839D /* FoodItem+CoreDataProperties.swift */; };
 		CBDC8ADD2C40C15B0043839D /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDC8ADC2C40C15B0043839D /* ImagePicker.swift */; };
 		CBDC8ADF2C42006D0043839D /* ReadOnlyItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDC8ADE2C42006D0043839D /* ReadOnlyItemView.swift */; };
 		CBDC8AE12C4229840043839D /* FoodViewPhotoBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDC8AE02C4229840043839D /* FoodViewPhotoBox.swift */; };
@@ -47,6 +44,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CB30C79E2C5F257500FDCBD1 /* FoodItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodItem.swift; sourceTree = "<group>"; };
+		CB30C7A02C600D2A00FDCBD1 /* FoodItemTemp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodItemTemp.swift; sourceTree = "<group>"; };
 		CBDC8A912C40A8570043839D /* FoodSaver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodSaver.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBDC8A942C40A8570043839D /* FoodSaverApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodSaverApp.swift; sourceTree = "<group>"; };
 		CBDC8A962C40A8570043839D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -57,16 +56,11 @@
 		CBDC8AAB2C40A85B0043839D /* FoodSaverUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FoodSaverUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBDC8AAF2C40A85B0043839D /* FoodSaverUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodSaverUITests.swift; sourceTree = "<group>"; };
 		CBDC8AB12C40A85B0043839D /* FoodSaverUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodSaverUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		CBDC8AC02C40A8F80043839D /* FoodViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodViewModel.swift; sourceTree = "<group>"; };
-		CBDC8AC22C40A9930043839D /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
 		CBDC8AC42C40A9E20043839D /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		CBDC8AC62C40AA530043839D /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 		CBDC8AC82C40AAAC0043839D /* AddModifyItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddModifyItemView.swift; sourceTree = "<group>"; };
 		CBDC8ACA2C40B19A0043839D /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		CBDC8ACC2C40B1B40043839D /* FoodItemRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodItemRow.swift; sourceTree = "<group>"; };
-		CBDC8AD62C40B95F0043839D /* FoodSaverModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FoodSaverModel.xcdatamodel; sourceTree = "<group>"; };
-		CBDC8AD82C40BB870043839D /* FoodItem+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FoodItem+CoreDataClass.swift"; sourceTree = "<group>"; };
-		CBDC8AD92C40BB870043839D /* FoodItem+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FoodItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		CBDC8ADC2C40C15B0043839D /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		CBDC8ADE2C42006D0043839D /* ReadOnlyItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadOnlyItemView.swift; sourceTree = "<group>"; };
 		CBDC8AE02C4229840043839D /* FoodViewPhotoBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodViewPhotoBox.swift; sourceTree = "<group>"; };
@@ -119,16 +113,14 @@
 		CBDC8A932C40A8570043839D /* FoodSaver */ = {
 			isa = PBXGroup;
 			children = (
-				CBDC8AD82C40BB870043839D /* FoodItem+CoreDataClass.swift */,
-				CBDC8AD92C40BB870043839D /* FoodItem+CoreDataProperties.swift */,
+				CB30C79E2C5F257500FDCBD1 /* FoodItem.swift */,
 				CBDC8A942C40A8570043839D /* FoodSaverApp.swift */,
 				CBDC8AC42C40A9E20043839D /* MainView.swift */,
-				CBDC8AC02C40A8F80043839D /* FoodViewModel.swift */,
 				CBDC8A962C40A8570043839D /* ContentView.swift */,
 				CBDC8AC62C40AA530043839D /* SplashScreenView.swift */,
-				CBDC8AC22C40A9930043839D /* PersistenceController.swift */,
 				CBDC8AC82C40AAAC0043839D /* AddModifyItemView.swift */,
 				CBDC8AE02C4229840043839D /* FoodViewPhotoBox.swift */,
+				CB30C7A02C600D2A00FDCBD1 /* FoodItemTemp.swift */,
 				CBDC8ACC2C40B1B40043839D /* FoodItemRow.swift */,
 				CBDC8ACA2C40B19A0043839D /* SearchBar.swift */,
 				CBDC8ADC2C40C15B0043839D /* ImagePicker.swift */,
@@ -136,7 +128,6 @@
 				CBDC8AA42C40A85B0043839D /* FoodSaverTests */,
 				CBDC8A982C40A85B0043839D /* Assets.xcassets */,
 				CBDC8A9A2C40A85B0043839D /* Preview Content */,
-				CBDC8AD52C40B95F0043839D /* FoodSaverModel.xcdatamodeld */,
 			);
 			path = FoodSaver;
 			sourceTree = "<group>";
@@ -296,21 +287,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB30C79F2C5F257500FDCBD1 /* FoodItem.swift in Sources */,
 				CBDC8AE12C4229840043839D /* FoodViewPhotoBox.swift in Sources */,
 				CBDC8ADD2C40C15B0043839D /* ImagePicker.swift in Sources */,
-				CBDC8ADA2C40BB870043839D /* FoodItem+CoreDataClass.swift in Sources */,
-				CBDC8ADB2C40BB870043839D /* FoodItem+CoreDataProperties.swift in Sources */,
+				CB30C7A12C600D2A00FDCBD1 /* FoodItemTemp.swift in Sources */,
 				CBDC8AC72C40AA530043839D /* SplashScreenView.swift in Sources */,
 				CBDC8A972C40A8570043839D /* ContentView.swift in Sources */,
 				CBDC8ADF2C42006D0043839D /* ReadOnlyItemView.swift in Sources */,
 				CBDC8AC52C40A9E20043839D /* MainView.swift in Sources */,
-				CBDC8AC12C40A8F80043839D /* FoodViewModel.swift in Sources */,
 				CBDC8ACB2C40B19A0043839D /* SearchBar.swift in Sources */,
-				CBDC8AD72C40B95F0043839D /* FoodSaverModel.xcdatamodeld in Sources */,
 				CBDC8AC92C40AAAC0043839D /* AddModifyItemView.swift in Sources */,
 				CBDC8ACD2C40B1B40043839D /* FoodItemRow.swift in Sources */,
 				CBDC8A952C40A8570043839D /* FoodSaverApp.swift in Sources */,
-				CBDC8AC32C40A9930043839D /* PersistenceController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -482,6 +470,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -513,6 +502,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -640,20 +630,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		CBDC8AD52C40B95F0043839D /* FoodSaverModel.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				CBDC8AD62C40B95F0043839D /* FoodSaverModel.xcdatamodel */,
-			);
-			currentVersion = CBDC8AD62C40B95F0043839D /* FoodSaverModel.xcdatamodel */;
-			name = FoodSaverModel.xcdatamodeld;
-			path = /Users/patrickbrown/Developer/FoodSaver/FoodSaver/FoodSaver/FoodSaverModel.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = CBDC8A892C40A8570043839D /* Project object */;
 }
