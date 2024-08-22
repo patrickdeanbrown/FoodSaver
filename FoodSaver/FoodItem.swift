@@ -1,10 +1,3 @@
-//
-//  FoodItem.swift
-//  FoodSaver
-//
-//  Created by Patrick Brown on 8/3/24.
-//
-
 import Foundation
 import SwiftData
 
@@ -14,10 +7,20 @@ final class FoodItem: Identifiable {
     var name: String
     var picture: Data?
     var bestBeforeDate: Date
-    var purchaseDate: Date
     var category: String
     var location: String
-    var status: String = "Fresh"
+    var warningPeriod: Int
+
+    var status: String {
+        let daysToExpiry = Calendar.current.dateComponents([.day], from: Date(), to: bestBeforeDate).day ?? 0
+        if daysToExpiry <= 0 {
+            return "Expired"
+        } else if daysToExpiry <= warningPeriod {
+            return "Expiring"
+        } else {
+            return "Fresh"
+        }
+    }
     
     var statusEmoji: String {
         switch status {
@@ -32,25 +35,21 @@ final class FoodItem: Identifiable {
         }
     }
     
-    init(name: String, picture: Data? = nil, bestBeforeDate: Date, purchaseDate: Date, category: String, location: String, status: String) {
+    init(name: String, picture: Data? = nil, bestBeforeDate: Date, category: String, location: String, warningPeriod: Int) {
         self.name = name
         self.picture = picture
         self.bestBeforeDate = bestBeforeDate
-        self.purchaseDate = purchaseDate
         self.category = category
         self.location = location
-        self.status = status
+        self.warningPeriod = warningPeriod
     }
     
-    init()
-    {
+    init() {
         self.name = ""
         self.picture = nil
         self.bestBeforeDate = Date()
-        self.purchaseDate = Date()
-        self.category = ""
-        self.location = ""
+        self.category = "Unspecified"
+        self.location = "Unspecified"
+        self.warningPeriod = 0
     }
-    
-
 }

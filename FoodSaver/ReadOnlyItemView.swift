@@ -35,13 +35,6 @@ struct ReadOnlyItemView: View {
                 .padding()
 
                 HStack {
-                    Text("Purchase Date:")
-                    Spacer()
-                    Text("\(foodItem.purchaseDate, formatter: dateFormatter)")
-                }
-                .padding()
-
-                HStack {
                     Text("Category:")
                     Spacer()
                     Text(foodItem.category)
