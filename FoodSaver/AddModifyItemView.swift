@@ -9,6 +9,19 @@ struct AddModifyItemView: View {
     var originalFoodItem: FoodItem?
     var isNewItem: Bool
 
+    let categories = [
+        "Fresh Produce": 3,
+        "Dairy Products": 7,
+        "Meat and Seafood": 2,
+        "Bread and Bakery": 5,
+        "Packaged Snacks": 30,
+        "Frozen Goods": 60,
+        "Canned Goods": 180,
+        "Condiments and Sauces": 90,
+        "Grains and Rice": 90,
+        "Beverages": 10
+    ]
+
     init(foodItem: FoodItem? = nil) {
         if let foodItem = foodItem {
             self.originalFoodItem = foodItem
@@ -53,12 +66,16 @@ struct AddModifyItemView: View {
                 DatePicker("Best Before Date", selection: $temporaryFoodItem.bestBeforeDate, displayedComponents: .date)
                     .padding()
 
-                DatePicker("Purchase Date", selection: $temporaryFoodItem.purchaseDate, displayedComponents: .date)
-                    .padding()
-
-                TextField("Category", text: $temporaryFoodItem.category)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding()
+                Picker("Category", selection: $temporaryFoodItem.category) {
+                    ForEach(categories.keys.sorted(), id: \.self) { category in
+                        Text(category).tag(category)
+                    }
+                }
+                .pickerStyle(MenuPickerStyle())  // Changed from WheelPickerStyle to MenuPickerStyle
+                .padding()
+                .onChange(of: temporaryFoodItem.category) { category in
+                    temporaryFoodItem.warningPeriod = categories[category] ?? 0
+                }
 
                 TextField("Location", text: $temporaryFoodItem.location)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -104,8 +121,8 @@ struct AddModifyItemView: View {
         foodItem.name = temporaryFoodItem.name
         foodItem.picture = temporaryFoodItem.picture
         foodItem.bestBeforeDate = temporaryFoodItem.bestBeforeDate
-        foodItem.purchaseDate = temporaryFoodItem.purchaseDate
         foodItem.category = temporaryFoodItem.category
         foodItem.location = temporaryFoodItem.location
+        foodItem.warningPeriod = temporaryFoodItem.warningPeriod
     }
 }
