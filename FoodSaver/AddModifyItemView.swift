@@ -21,6 +21,8 @@ struct AddModifyItemView: View {
         "Grains and Rice": 90,
         "Beverages": 10
     ]
+    
+    let locations = ["Fridge", "Cupboard", "Freezer", "Shelves", "Other"]
 
     init(foodItem: FoodItem? = nil) {
         if let foodItem = foodItem {
@@ -40,7 +42,9 @@ struct AddModifyItemView: View {
                     .font(.largeTitle)
                     .padding()
 
-                TextField("Item Name", text: $temporaryFoodItem.name)
+                Text("Item Name")
+                    .font(.headline)
+                TextField("Enter item name", text: $temporaryFoodItem.name)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding()
 
@@ -63,23 +67,34 @@ struct AddModifyItemView: View {
                     loadImage()
                 }
 
-                DatePicker("Best Before Date", selection: $temporaryFoodItem.bestBeforeDate, displayedComponents: .date)
+                Text("Best Before Date")
+                    .font(.headline)
+                DatePicker("Select a Date", selection: $temporaryFoodItem.bestBeforeDate, displayedComponents: .date)
+                    .frame(maxWidth: .infinity, alignment: .center)
                     .padding()
 
-                Picker("Category", selection: $temporaryFoodItem.category) {
+                Text("Category")
+                    .font(.headline)
+                Picker("Select category", selection: $temporaryFoodItem.category) {
                     ForEach(categories.keys.sorted(), id: \.self) { category in
                         Text(category).tag(category)
                     }
                 }
-                .pickerStyle(MenuPickerStyle())  // Changed from WheelPickerStyle to MenuPickerStyle
+                .pickerStyle(MenuPickerStyle())
                 .padding()
                 .onChange(of: temporaryFoodItem.category) { category in
                     temporaryFoodItem.warningPeriod = categories[category] ?? 0
                 }
 
-                TextField("Location", text: $temporaryFoodItem.location)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding()
+                Text("Location")
+                    .font(.headline)
+                Picker("Select location", selection: $temporaryFoodItem.location) {
+                    ForEach(locations, id: \.self) { location in
+                        Text(location).tag(location)
+                    }
+                }
+                .pickerStyle(MenuPickerStyle())
+                .padding()
 
                 Spacer()
 
