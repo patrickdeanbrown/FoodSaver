@@ -5,6 +5,7 @@ struct AddModifyItemView: View {
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.modelContext) private var context
     @State private var temporaryFoodItem: FoodItemTemp
+    @FocusState private var isInputActive: Bool
 
     var originalFoodItem: FoodItem?
     var isNewItem: Bool
@@ -45,6 +46,7 @@ struct AddModifyItemView: View {
                 Text("Item Name")
                     .font(.headline)
                 TextField("Enter item name", text: $temporaryFoodItem.name)
+                    .focused($isInputActive)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding()
 
@@ -113,6 +115,9 @@ struct AddModifyItemView: View {
             }
         }
         .padding(.bottom, 50)
+        .onTapGesture {
+            isInputActive = false
+        }
     }
 
     private func loadImage() {

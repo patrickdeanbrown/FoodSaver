@@ -11,6 +11,7 @@ struct MainView: View {
     @State private var selectedStatus: String = "All"
     @State private var showingReadOnlyItem = false
     @State private var showingAddModifyItem = false
+    @FocusState private var isSearchFieldActive: Bool
 
     var filteredFoodItems: [FoodItem] {
         // Initial array of items
@@ -42,7 +43,7 @@ struct MainView: View {
     var body: some View {
         NavigationView {
             VStack {
-                SearchBar(text: $searchText, selectedCategory: $selectedCategory)
+                SearchBar(text: $searchText, selectedCategory: $selectedCategory, isSearchFieldActive: $isSearchFieldActive)
                     .padding(.horizontal)
 
                 Picker("Status", selection: $selectedStatus) {
@@ -57,9 +58,15 @@ struct MainView: View {
                 List {
                     ForEach(filteredFoodItems) { foodItem in
                         FoodItemRow(foodItem: foodItem)
+                            .contentShape(Rectangle())
                             .onTapGesture {
-                                selectedFoodItem = foodItem
-                                showingReadOnlyItem = true
+                                if isSearchFieldActive {
+                                    isSearchFieldActive = false
+                                }
+                                else {
+                                    selectedFoodItem = foodItem
+                                    showingReadOnlyItem = true
+                                }
                             }
                             .swipeActions(edge: .trailing) {
                                 Button("Delete") {
