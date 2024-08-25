@@ -8,16 +8,14 @@ struct MainView: View {
     @State private var searchText: String = ""
     @State private var selectedCategory: String = "Name"
     @State private var selectedFoodItem: FoodItem?
+    @State private var isShowingEditView = false
     @State private var selectedStatus: String = "All"
-    @State private var showingReadOnlyItem = false
-    @State private var showingAddModifyItem = false
     @FocusState private var isSearchFieldActive: Bool
 
     var filteredFoodItems: [FoodItem] {
-        // Initial array of items
-        var filtered: [FoodItem] = foodItems
+        // Apply filters based on selected criteria
+        var filtered = foodItems
         
-        // Filter by search text if it is not empty
         if !searchText.isEmpty {
             switch selectedCategory {
             case "Name":
@@ -31,21 +29,21 @@ struct MainView: View {
             }
         }
 
-        // Filter by status if a specific status is selected
         if selectedStatus != "All" {
             filtered = filtered.filter { $0.status == selectedStatus }
         }
 
-        // Sort the filtered results by name
         return filtered.sorted { $0.name < $1.name }
     }
 
     var body: some View {
         NavigationView {
             VStack {
+                // Search bar and category filter
                 SearchBar(text: $searchText, selectedCategory: $selectedCategory, isSearchFieldActive: $isSearchFieldActive)
                     .padding(.horizontal)
 
+                // Status filter
                 Picker("Status", selection: $selectedStatus) {
                     Text("All").tag("All")
                     Text("Fresh").tag("Fresh")
@@ -55,59 +53,50 @@ struct MainView: View {
                 .pickerStyle(SegmentedPickerStyle())
                 .padding(.horizontal)
 
+                // List of food items
                 List {
                     ForEach(filteredFoodItems) { foodItem in
-                        FoodItemRow(foodItem: foodItem)
-                            .contentShape(Rectangle())
-                            .onTapGesture {
-                                if isSearchFieldActive {
-                                    isSearchFieldActive = false
-                                }
-                                else {
-                                    selectedFoodItem = foodItem
-                                    showingReadOnlyItem = true
-                                }
+                        NavigationLink(destination: ReadOnlyItemView(foodItem: foodItem)) {
+                            FoodItemRow(foodItem: foodItem)
+                        }
+                        .swipeActions {
+                            Button(role: .destructive) {
+                                deleteFoodItem(foodItem)
+                            } label: {
+                                Text("Delete")
                             }
-                            .swipeActions(edge: .trailing) {
-                                Button("Delete") {
-                                    context.delete(foodItem)
-                                    try? context.save()
-                                }
-                                .tint(.red)
-
-                                Button("Modify") {
-                                    showingAddModifyItem = true
-                                }
-                                .tint(.blue)
+                            Button("Modify") {
+                                selectedFoodItem = foodItem
+                                isShowingEditView = true
                             }
+                            .tint(.blue)
+                        }
                     }
                 }
                 .listStyle(PlainListStyle())
             }
-            .navigationBarTitle("Food Saver", displayMode: .inline)
+            .navigationTitle("Food Saver")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
                         let newItem = FoodItem()
                         context.insert(newItem)
                         selectedFoodItem = newItem
-                        showingAddModifyItem = true
+                        isShowingEditView = true
                     }) {
                         Image(systemName: "plus.circle.fill")
                             .foregroundColor(.blue)
                     }
                 }
             }
-            .sheet(isPresented: $showingReadOnlyItem) {
-                if let foodItem = selectedFoodItem {
-                    ReadOnlyItemView(foodItem: foodItem)
-                }
-            }
-            .sheet(isPresented: $showingAddModifyItem) {
-                if let foodItem = selectedFoodItem {
-                    AddModifyItemView(foodItem: foodItem)
-                }
+            .sheet(item: $selectedFoodItem) { foodItem in
+                AddModifyItemView(foodItem: foodItem)
             }
         }
+    }
+
+    private func deleteFoodItem(_ foodItem: FoodItem) {
+        context.delete(foodItem)
+        try? context.save()
     }
 }

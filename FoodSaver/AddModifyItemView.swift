@@ -127,7 +127,7 @@ struct AddModifyItemView: View {
 
     private func saveChanges() {
         if isNewItem {
-            let newItem = FoodItem()
+            let newItem = originalFoodItem ?? FoodItem()
             updateModel(newItem)
             context.insert(newItem)
         } else if let original = originalFoodItem {
