@@ -23,7 +23,6 @@ The product specification is a living document designed to maintain the app’s 
 - **Design Pattern:** MV (Model-View)
 - **APIs:** Apple’s Photos & Camera Frameworks
 
-## 🗂️ Project Structure
 
 ## 🗂️ Project Structure
 
