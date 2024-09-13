@@ -565,6 +565,7 @@
 				DEVELOPMENT_TEAM = BD36Y7488S;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.food-and-drink";
 				INFOPLIST_KEY_NSCameraUsageDescription = "This app requires access to the camera to take pictures of food items.\"";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "This app requires access to the photo library to select pictures of food items.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -597,6 +598,7 @@
 				DEVELOPMENT_TEAM = BD36Y7488S;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.food-and-drink";
 				INFOPLIST_KEY_NSCameraUsageDescription = "This app requires access to the camera to take pictures of food items.\"";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "This app requires access to the photo library to select pictures of food items.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
