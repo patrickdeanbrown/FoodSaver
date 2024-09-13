@@ -83,6 +83,7 @@ struct MainView: View {
                 }
             }
             .listStyle(PlainListStyle())
+            .scrollContentBackground(.hidden) // Removes the default gray background
         }
         .navigationTitle("Food Saver")
         .toolbar {
@@ -103,6 +104,9 @@ struct MainView: View {
             triggerConfetti()
         }
         .confettiCannon(counter: $confettiCounter, num: 50, radius: 300.0)
+        .onAppear {
+            UITableView.appearance().separatorStyle = .none // Remove separators
+        }
     }
     
     private func addNewItem() {
