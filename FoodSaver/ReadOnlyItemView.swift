@@ -1,3 +1,4 @@
+// ReadOnlyItemView.swift
 import SwiftUI
 
 struct ReadOnlyItemView: View {
@@ -5,52 +6,65 @@ struct ReadOnlyItemView: View {
 
     var body: some View {
         ScrollView {
-            VStack {
+            VStack(alignment: .leading, spacing: 20) {
                 Text("Food Item Details")
-                    .font(.largeTitle)
-                    .padding()
-
-                HStack {
-                    Text("Item Name:")
-                    Spacer()
-                    Text(foodItem.name)
+                    .font(Theme.titleFont)
+                    .foregroundColor(Theme.primaryColor)
+                    .padding(.top)
+                
+                Group {
+                    HStack {
+                        Text("Item Name:")
+                            .font(Theme.headlineFont)
+                            .foregroundColor(Theme.secondaryColor)
+                        Spacer()
+                        Text(foodItem.name)
+                            .font(Theme.bodyFont)
+                    }
+                    
+                    if let imageData = foodItem.picture, let image = UIImage(data: imageData) {
+                        Image(uiImage: image)
+                            .makeFoodViewPhotoBox()
+                    } else {
+                        Image(systemName: "camera.fill")
+                            .makeFoodViewPhotoBox()
+                            .foregroundColor(.gray)
+                    }
+                    
+                    HStack {
+                        Text("Best Before:")
+                            .font(Theme.headlineFont)
+                            .foregroundColor(Theme.secondaryColor)
+                        Spacer()
+                        Text("\(foodItem.bestBeforeDate, formatter: dateFormatter)")
+                            .font(Theme.bodyFont)
+                    }
+                    
+                    HStack {
+                        Text("Category:")
+                            .font(Theme.headlineFont)
+                            .foregroundColor(Theme.secondaryColor)
+                        Spacer()
+                        Text(foodItem.category)
+                            .font(Theme.bodyFont)
+                    }
+                    
+                    HStack {
+                        Text("Location:")
+                            .font(Theme.headlineFont)
+                            .foregroundColor(Theme.secondaryColor)
+                        Spacer()
+                        Text(foodItem.location)
+                            .font(Theme.bodyFont)
+                    }
                 }
-                .padding()
-
-                if let imageData = foodItem.picture, let image = UIImage(data: imageData) {
-                    Image(uiImage: image)
-                        .makeFoodViewPhotoBox()
-                        .padding()
-                } else {
-                    Image(systemName: "camera.fill")
-                        .makeFoodViewPhotoBox()
-                        .padding()
-                }
-
-                HStack {
-                    Text("Best Before:")
-                    Spacer()
-                    Text("\(foodItem.bestBeforeDate, formatter: dateFormatter)")
-                }
-                .padding()
-
-                HStack {
-                    Text("Category:")
-                    Spacer()
-                    Text(foodItem.category)
-                }
-                .padding()
-
-                HStack {
-                    Text("Location:")
-                    Spacer()
-                    Text(foodItem.location)
-                }
-                .padding()
-
+                .padding(.horizontal)
+                
                 Spacer()
             }
+            .animation(.easeInOut, value: foodItem)
         }
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 

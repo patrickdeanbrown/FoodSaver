@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		CB30C79F2C5F257500FDCBD1 /* FoodItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB30C79E2C5F257500FDCBD1 /* FoodItem.swift */; };
 		CB30C7A12C600D2A00FDCBD1 /* FoodItemTemp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB30C7A02C600D2A00FDCBD1 /* FoodItemTemp.swift */; };
+		CBD8D7462C9376C700D67D9F /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD8D7452C9376C700D67D9F /* MainViewModel.swift */; };
+		CBD8D7492C937A1800D67D9F /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD8D7482C937A1800D67D9F /* Theme.swift */; };
+		CBD8D74C2C937A7F00D67D9F /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = CBD8D74B2C937A7F00D67D9F /* ConfettiSwiftUI */; };
 		CBDC8A952C40A8570043839D /* FoodSaverApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDC8A942C40A8570043839D /* FoodSaverApp.swift */; };
 		CBDC8A972C40A8570043839D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDC8A962C40A8570043839D /* ContentView.swift */; };
 		CBDC8A992C40A85B0043839D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBDC8A982C40A85B0043839D /* Assets.xcassets */; };
@@ -46,6 +49,8 @@
 /* Begin PBXFileReference section */
 		CB30C79E2C5F257500FDCBD1 /* FoodItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodItem.swift; sourceTree = "<group>"; };
 		CB30C7A02C600D2A00FDCBD1 /* FoodItemTemp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodItemTemp.swift; sourceTree = "<group>"; };
+		CBD8D7452C9376C700D67D9F /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		CBD8D7482C937A1800D67D9F /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		CBDC8A912C40A8570043839D /* FoodSaver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodSaver.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBDC8A942C40A8570043839D /* FoodSaverApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodSaverApp.swift; sourceTree = "<group>"; };
 		CBDC8A962C40A8570043839D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -71,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CBD8D74C2C937A7F00D67D9F /* ConfettiSwiftUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,12 +97,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CBD8D74A2C937A7F00D67D9F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		CBDC8A882C40A8570043839D = {
 			isa = PBXGroup;
 			children = (
 				CBDC8A932C40A8570043839D /* FoodSaver */,
 				CBDC8AAE2C40A85B0043839D /* FoodSaverUITests */,
 				CBDC8A922C40A8570043839D /* Products */,
+				CBD8D74A2C937A7F00D67D9F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -116,6 +130,7 @@
 				CB30C79E2C5F257500FDCBD1 /* FoodItem.swift */,
 				CBDC8A942C40A8570043839D /* FoodSaverApp.swift */,
 				CBDC8AC42C40A9E20043839D /* MainView.swift */,
+				CBD8D7452C9376C700D67D9F /* MainViewModel.swift */,
 				CBDC8A962C40A8570043839D /* ContentView.swift */,
 				CBDC8AC62C40AA530043839D /* SplashScreenView.swift */,
 				CBDC8AC82C40AAAC0043839D /* AddModifyItemView.swift */,
@@ -125,6 +140,7 @@
 				CBDC8ACA2C40B19A0043839D /* SearchBar.swift */,
 				CBDC8ADC2C40C15B0043839D /* ImagePicker.swift */,
 				CBDC8ADE2C42006D0043839D /* ReadOnlyItemView.swift */,
+				CBD8D7482C937A1800D67D9F /* Theme.swift */,
 				CBDC8AA42C40A85B0043839D /* FoodSaverTests */,
 				CBDC8A982C40A85B0043839D /* Assets.xcassets */,
 				CBDC8A9A2C40A85B0043839D /* Preview Content */,
@@ -173,6 +189,9 @@
 			dependencies = (
 			);
 			name = FoodSaver;
+			packageProductDependencies = (
+				CBD8D74B2C937A7F00D67D9F /* ConfettiSwiftUI */,
+			);
 			productName = FoodSaver;
 			productReference = CBDC8A912C40A8570043839D /* FoodSaver.app */;
 			productType = "com.apple.product-type.application";
@@ -245,6 +264,9 @@
 				Base,
 			);
 			mainGroup = CBDC8A882C40A8570043839D;
+			packageReferences = (
+				CBD8D7472C93789600D67D9F /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */,
+			);
 			productRefGroup = CBDC8A922C40A8570043839D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -292,6 +314,7 @@
 				CBDC8ADD2C40C15B0043839D /* ImagePicker.swift in Sources */,
 				CB30C7A12C600D2A00FDCBD1 /* FoodItemTemp.swift in Sources */,
 				CBDC8AC72C40AA530043839D /* SplashScreenView.swift in Sources */,
+				CBD8D7462C9376C700D67D9F /* MainViewModel.swift in Sources */,
 				CBDC8A972C40A8570043839D /* ContentView.swift in Sources */,
 				CBDC8ADF2C42006D0043839D /* ReadOnlyItemView.swift in Sources */,
 				CBDC8AC52C40A9E20043839D /* MainView.swift in Sources */,
@@ -299,6 +322,7 @@
 				CBDC8AC92C40AAAC0043839D /* AddModifyItemView.swift in Sources */,
 				CBDC8ACD2C40B1B40043839D /* FoodItemRow.swift in Sources */,
 				CBDC8A952C40A8570043839D /* FoodSaverApp.swift in Sources */,
+				CBD8D7492C937A1800D67D9F /* Theme.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -630,6 +654,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CBD8D7472C93789600D67D9F /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/simibac/ConfettiSwiftUI.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CBD8D74B2C937A7F00D67D9F /* ConfettiSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CBD8D7472C93789600D67D9F /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */;
+			productName = ConfettiSwiftUI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CBDC8A892C40A8570043839D /* Project object */;
 }

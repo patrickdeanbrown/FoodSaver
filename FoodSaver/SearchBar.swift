@@ -1,3 +1,4 @@
+// SearchBar.swift
 import SwiftUI
 
 struct SearchBar: View {
