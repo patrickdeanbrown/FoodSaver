@@ -11,7 +11,7 @@ struct FoodItemTemp {
 
     var showImagePicker = false
     var inputImage: UIImage?
-    
+
     init() {
         self.name = ""
         self.picture = nil

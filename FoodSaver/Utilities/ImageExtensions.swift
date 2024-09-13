@@ -2,7 +2,7 @@ import SwiftUI
 
 extension Image {
     func makeFoodViewPhotoBox() -> some View {
-        return self.resizable()
+        self.resizable()
             .scaledToFit()
             .frame(height: 100)
             .clipShape(RoundedRectangle(cornerRadius: 10))

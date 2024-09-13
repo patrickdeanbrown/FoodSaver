@@ -1,4 +1,3 @@
-// FoodSaverApp.swift
 import SwiftUI
 import SwiftData
 
@@ -12,10 +11,10 @@ struct FoodSaverApp: App {
             fatalError("Failed to create ModelContainer: \(error)")
         }
     }()
-    
+
     var body: some Scene {
         WindowGroup {
-            SplashScreen()
+            SplashScreenView()
                 .modelContainer(modelContainer)
                 .preferredColorScheme(.light) // Centered around light cornflower blue
         }
