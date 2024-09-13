@@ -1,15 +1,17 @@
+// AddModifyItemView.swift
 import SwiftUI
 import SwiftData
+import ConfettiSwiftUI
 
 struct AddModifyItemView: View {
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.modelContext) private var context
     @State private var temporaryFoodItem: FoodItemTemp
     @FocusState private var isInputActive: Bool
-
+    
     var originalFoodItem: FoodItem?
     var isNewItem: Bool
-
+    
     let categories = [
         "Fresh Produce": 3,
         "Dairy Products": 7,
@@ -24,7 +26,10 @@ struct AddModifyItemView: View {
     ]
     
     let locations = ["Fridge", "Cupboard", "Freezer", "Shelves", "Other"]
-
+    
+    // Confetti counter
+    @State private var confettiCounter: Int = 0
+    
     init(foodItem: FoodItem? = nil) {
         if let foodItem = foodItem {
             self.originalFoodItem = foodItem
@@ -35,88 +40,154 @@ struct AddModifyItemView: View {
             self.isNewItem = true
         }
     }
-
+    
     var body: some View {
-        ScrollView {
-            VStack {
-                Text(isNewItem ? "Add Food Item" : "Modify Food Item")
-                    .font(.largeTitle)
-                    .padding()
-
-                Text("Item Name")
-                    .font(.headline)
-                TextField("Enter item name", text: $temporaryFoodItem.name)
-                    .focused($isInputActive)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding()
-
-                Button(action: {
-                    temporaryFoodItem.showImagePicker = true
-                }) {
-                    if let imageData = temporaryFoodItem.picture, let image = UIImage(data: imageData) {
-                        Image(uiImage: image)
-                            .makeFoodViewPhotoBox()
-                    } else {
-                        Image(systemName: "camera.fill")
-                            .makeFoodViewPhotoBox()
+        NavigationView {
+            ScrollView {
+                VStack(spacing: 20) {
+                    Text(isNewItem ? "Add Food Item" : "Modify Food Item")
+                        .font(Theme.titleFont)
+                        .foregroundColor(Theme.primaryColor)
+                        .padding(.top)
+                    
+                    // Item Name with Autocomplete
+                    VStack(alignment: .leading) {
+                        Text("Item Name")
+                            .font(Theme.headlineFont)
+                            .foregroundColor(Theme.secondaryColor)
+                        TextField("Enter item name", text: $temporaryFoodItem.name)
+                            .focused($isInputActive)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .padding(.vertical, 5)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 8)
+                                    .stroke(isInputActive ? Theme.accentColor : Color.gray, lineWidth: 1)
+                            )
+                            .autocapitalization(.words)
                     }
-                }
-                .sheet(isPresented: $temporaryFoodItem.showImagePicker) {
-                    ImagePicker(image: $temporaryFoodItem.inputImage, sourceType: .camera)
-                        .edgesIgnoringSafeArea(.all)
-                }
-                .onChange(of: temporaryFoodItem.inputImage) {
-                    loadImage()
-                }
-
-                Text("Best Before Date")
-                    .font(.headline)
-                DatePicker("Select a Date", selection: $temporaryFoodItem.bestBeforeDate, displayedComponents: .date)
-                    .frame(maxWidth: .infinity, alignment: .center)
-                    .padding()
-
-                Text("Category")
-                    .font(.headline)
-                Picker("Select category", selection: $temporaryFoodItem.category) {
-                    ForEach(categories.keys.sorted(), id: \.self) { category in
-                        Text(category).tag(category)
+                    .padding(.horizontal)
+                    
+                    // Image Picker
+                    Button(action: {
+                        temporaryFoodItem.showImagePicker = true
+                    }) {
+                        if let imageData = temporaryFoodItem.picture, let image = UIImage(data: imageData) {
+                            Image(uiImage: image)
+                                .makeFoodViewPhotoBox()
+                        } else {
+                            Image(systemName: "camera.fill")
+                                .makeFoodViewPhotoBox()
+                                .foregroundColor(.gray)
+                        }
                     }
-                }
-                .pickerStyle(MenuPickerStyle())
-                .padding()
-                .onChange(of: temporaryFoodItem.category) { category in
-                    temporaryFoodItem.warningPeriod = categories[category] ?? 0
-                }
-
-                Text("Location")
-                    .font(.headline)
-                Picker("Select location", selection: $temporaryFoodItem.location) {
-                    ForEach(locations, id: \.self) { location in
-                        Text(location).tag(location)
+                    .sheet(isPresented: $temporaryFoodItem.showImagePicker) {
+                        ImagePicker(image: $temporaryFoodItem.inputImage, sourceType: .camera)
+                            .edgesIgnoringSafeArea(.all)
                     }
-                }
-                .pickerStyle(MenuPickerStyle())
-                .padding()
-
-                Spacer()
-
-                HStack {
-                    Button("Back") {
-                        presentationMode.wrappedValue.dismiss()
+                    .onChange(of: temporaryFoodItem.inputImage) { _ in
+                        loadImage()
                     }
-                    .padding()
-
-                    Button("Save") {
-                        saveChanges()
-                        presentationMode.wrappedValue.dismiss()
+                    
+                    // Best Before Date Picker
+                    VStack(alignment: .leading) {
+                        Text("Best Before Date")
+                            .font(Theme.headlineFont)
+                            .foregroundColor(Theme.secondaryColor)
+                        DatePicker("Select a Date", selection: $temporaryFoodItem.bestBeforeDate, displayedComponents: .date)
+                            .datePickerStyle(GraphicalDatePickerStyle())
+                            .padding(.vertical, 5)
+                            .background(Color(UIColor.secondarySystemBackground))
+                            .cornerRadius(8)
                     }
-                    .padding()
+                    .padding(.horizontal)
+                    
+                    // Category Picker
+                    VStack(alignment: .leading) {
+                        Text("Category")
+                            .font(Theme.headlineFont)
+                            .foregroundColor(Theme.secondaryColor)
+                        Menu {
+                            ForEach(categories.keys.sorted(), id: \.self) { category in
+                                Button(action: {
+                                    temporaryFoodItem.category = category
+                                    temporaryFoodItem.warningPeriod = categories[category] ?? 0
+                                }) {
+                                    Text(category)
+                                }
+                            }
+                        } label: {
+                            HStack {
+                                Text(temporaryFoodItem.category.isEmpty ? "Select category" : temporaryFoodItem.category)
+                                    .foregroundColor(temporaryFoodItem.category.isEmpty ? .gray : .primary)
+                                Spacer()
+                                Image(systemName: "chevron.down")
+                                    .foregroundColor(.gray)
+                            }
+                            .padding()
+                            .background(Color(UIColor.secondarySystemBackground))
+                            .cornerRadius(8)
+                        }
+                    }
+                    .padding(.horizontal)
+                    
+                    // Location Picker
+                    VStack(alignment: .leading) {
+                        Text("Location")
+                            .font(Theme.headlineFont)
+                            .foregroundColor(Theme.secondaryColor)
+                        Menu {
+                            ForEach(locations, id: \.self) { location in
+                                Button(action: {
+                                    temporaryFoodItem.location = location
+                                }) {
+                                    Text(location)
+                                }
+                            }
+                        } label: {
+                            HStack {
+                                Text(temporaryFoodItem.location.isEmpty ? "Select location" : temporaryFoodItem.location)
+                                    .foregroundColor(temporaryFoodItem.location.isEmpty ? .gray : .primary)
+                                Spacer()
+                                Image(systemName: "chevron.down")
+                                    .foregroundColor(.gray)
+                            }
+                            .padding()
+                            .background(Color(UIColor.secondarySystemBackground))
+                            .cornerRadius(8)
+                        }
+                    }
+                    .padding(.horizontal)
+                    
+                    Spacer()
+                    
+                    // Action Buttons
+                    HStack {
+                        Button("Cancel") {
+                            presentationMode.wrappedValue.dismiss()
+                        }
+                        .foregroundColor(.red)
+                        .padding()
+                        
+                        Spacer()
+                        
+                        Button("Save") {
+                            saveChanges()
+                            if isNewItem {
+                                triggerConfetti()
+                            }
+                            // Delay dismissal to allow confetti to display
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                                presentationMode.wrappedValue.dismiss()
+                            }
+                        }
+                        .foregroundColor(Theme.accentColor)
+                        .padding()
+                    }
+                    .padding(.horizontal)
                 }
             }
-        }
-        .padding(.bottom, 50)
-        .onTapGesture {
-            isInputActive = false
+            .navigationBarHidden(true)
+            .confettiCannon(counter: $confettiCounter, num: 50, radius: 300.0)
         }
     }
 
@@ -127,14 +198,17 @@ struct AddModifyItemView: View {
 
     private func saveChanges() {
         if isNewItem {
-            let newItem = originalFoodItem ?? FoodItem()
+            let newItem = FoodItem()
             updateModel(newItem)
             context.insert(newItem)
         } else if let original = originalFoodItem {
             updateModel(original)
         }
-
-        try? context.save()
+        do {
+            try context.save()
+        } catch {
+            print("Error saving context: \(error)")
+        }
     }
 
     private func updateModel(_ foodItem: FoodItem) {
@@ -144,5 +218,9 @@ struct AddModifyItemView: View {
         foodItem.category = temporaryFoodItem.category
         foodItem.location = temporaryFoodItem.location
         foodItem.warningPeriod = temporaryFoodItem.warningPeriod
+    }
+
+    private func triggerConfetti() {
+        confettiCounter += 1
     }
 }

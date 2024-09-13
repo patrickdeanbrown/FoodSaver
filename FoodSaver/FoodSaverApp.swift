@@ -1,3 +1,4 @@
+// FoodSaverApp.swift
 import SwiftUI
 import SwiftData
 
@@ -14,8 +15,9 @@ struct FoodSaverApp: App {
     
     var body: some Scene {
         WindowGroup {
-            MainView()
+            SplashScreen()
                 .modelContainer(modelContainer)
+                .preferredColorScheme(.light) // Centered around light cornflower blue
         }
     }
 }

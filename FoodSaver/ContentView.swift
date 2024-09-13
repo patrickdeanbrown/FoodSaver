@@ -6,5 +6,6 @@ struct ContentView: View {
             MainView()
                 .navigationTitle("Food Saver")
         }
+        .preferredColorScheme(.light) // Apply the color scheme here
     }
 }
