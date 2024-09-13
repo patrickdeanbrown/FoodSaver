@@ -161,16 +161,26 @@ struct AddModifyItemView: View {
                     Spacer()
                     
                     // Action Buttons
-                    HStack {
-                        Button("Cancel") {
+                    HStack(spacing: 20) {
+                        // Cancel Button
+                        Button(action: {
                             presentationMode.wrappedValue.dismiss()
+                        }) {
+                            Image(systemName: "xmark.circle")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 24, height: 24)
+                                .foregroundColor(.white)
+                                .padding()
+                                .background(Theme.accentColor)
+                                .clipShape(RoundedRectangle(cornerRadius: 10))
                         }
-                        .foregroundColor(.red)
-                        .padding()
+                        .accessibilityLabel("Cancel")
                         
                         Spacer()
                         
-                        Button("Save") {
+                        // Save Button
+                        Button(action: {
                             saveChanges()
                             if isNewItem {
                                 triggerConfetti()
@@ -179,9 +189,17 @@ struct AddModifyItemView: View {
                             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                                 presentationMode.wrappedValue.dismiss()
                             }
+                        }) {
+                            Image(systemName: "tray.and.arrow.down.fill")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 24, height: 24)
+                                .foregroundColor(.white)
+                                .padding()
+                                .background(Theme.accentColor)
+                                .clipShape(RoundedRectangle(cornerRadius: 10))
                         }
-                        .foregroundColor(Theme.accentColor)
-                        .padding()
+                        .accessibilityLabel("Save")
                     }
                     .padding(.horizontal)
                 }
