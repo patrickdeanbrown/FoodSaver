@@ -1,7 +1,6 @@
-// SplashScreenView.swift
 import SwiftUI
 
-struct SplashScreen: View {
+struct SplashScreenView: View {
     @State private var isActive = false
     @State private var animateLogo = false
 
@@ -17,7 +16,7 @@ struct SplashScreen: View {
                         .foregroundColor(Theme.primaryColor)
                         .scaleEffect(animateLogo ? 1.2 : 1.0)
                         .animation(.easeInOut(duration: 1.5).repeatForever(autoreverses: true), value: animateLogo)
-                    
+
                     Image(systemName: "fork.knife.circle")
                         .resizable()
                         .frame(width: 100, height: 100)
@@ -35,5 +34,11 @@ struct SplashScreen: View {
                 }
             }
         }
+    }
+}
+
+struct SplashScreenView_Previews: PreviewProvider {
+    static var previews: some View {
+        SplashScreenView()
     }
 }

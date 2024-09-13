@@ -1,8 +1,6 @@
-//
-//  Constants.swift
-//  FoodSaver
-//
-//  Created by Patrick Brown on 9/12/24.
-//
+import SwiftUI
 
-import Foundation
+struct Constants {
+    static let confettiCount = 50
+    static let confettiRadius: CGFloat = 300.0
+}

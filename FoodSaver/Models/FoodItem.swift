@@ -1,6 +1,12 @@
 import Foundation
 import SwiftData
 
+enum FoodStatus: String {
+    case expired = "Expired"
+    case expiring = "Expiring"
+    case fresh = "Fresh"
+}
+
 @Model
 final class FoodItem: Identifiable {
     @Attribute var id: UUID = UUID()
@@ -11,30 +17,17 @@ final class FoodItem: Identifiable {
     var location: String
     var warningPeriod: Int
 
-    var status: String {
+    var status: FoodStatus {
         let daysToExpiry = Calendar.current.dateComponents([.day], from: Date(), to: bestBeforeDate).day ?? 0
         if daysToExpiry <= 0 {
-            return "Expired"
+            return .expired
         } else if daysToExpiry <= warningPeriod {
-            return "Expiring"
+            return .expiring
         } else {
-            return "Fresh"
+            return .fresh
         }
     }
-    
-    var statusEmoji: String {
-        switch status {
-        case "Expired":
-            return "🔴"
-        case "Expiring":
-            return "🟡"
-        case "Fresh":
-            return "🟢"
-        default:
-            return "🟢"
-        }
-    }
-    
+
     init(name: String, picture: Data? = nil, bestBeforeDate: Date, category: String, location: String, warningPeriod: Int) {
         self.name = name
         self.picture = picture
@@ -43,7 +36,7 @@ final class FoodItem: Identifiable {
         self.location = location
         self.warningPeriod = warningPeriod
     }
-    
+
     init() {
         self.name = ""
         self.picture = nil

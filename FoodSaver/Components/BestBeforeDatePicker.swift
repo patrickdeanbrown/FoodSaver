@@ -1,8 +1,19 @@
-//
-//  BestBeforeDatePicker.swift
-//  FoodSaver
-//
-//  Created by Patrick Brown on 9/12/24.
-//
+import SwiftUI
 
-import Foundation
+struct BestBeforeDatePicker: View {
+    @Binding var bestBeforeDate: Date
+
+    var body: some View {
+        VStack(alignment: .leading) {
+            Text("Best Before Date")
+                .font(Theme.headlineFont)
+                .foregroundColor(Theme.secondaryColor)
+            DatePicker("Select a Date", selection: $bestBeforeDate, displayedComponents: .date)
+                .datePickerStyle(GraphicalDatePickerStyle())
+                .padding(.vertical, 5)
+                .background(Color(UIColor.secondarySystemBackground))
+                .cornerRadius(8)
+        }
+        .padding(.horizontal)
+    }
+}

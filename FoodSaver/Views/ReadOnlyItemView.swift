@@ -1,4 +1,3 @@
-// ReadOnlyItemView.swift
 import SwiftUI
 
 struct ReadOnlyItemView: View {
@@ -11,7 +10,7 @@ struct ReadOnlyItemView: View {
                     .font(Theme.titleFont)
                     .foregroundColor(Theme.primaryColor)
                     .padding(.top)
-                
+
                 Group {
                     HStack {
                         Text("Item Name:")
@@ -21,7 +20,7 @@ struct ReadOnlyItemView: View {
                         Text(foodItem.name)
                             .font(Theme.bodyFont)
                     }
-                    
+
                     if let imageData = foodItem.picture, let image = UIImage(data: imageData) {
                         Image(uiImage: image)
                             .makeFoodViewPhotoBox()
@@ -30,16 +29,16 @@ struct ReadOnlyItemView: View {
                             .makeFoodViewPhotoBox()
                             .foregroundColor(.gray)
                     }
-                    
+
                     HStack {
                         Text("Best Before:")
                             .font(Theme.headlineFont)
                             .foregroundColor(Theme.secondaryColor)
                         Spacer()
-                        Text("\(foodItem.bestBeforeDate, formatter: dateFormatter)")
+                        Text("\(foodItem.bestBeforeDate, formatter: DateFormatter.mediumStyle)")
                             .font(Theme.bodyFont)
                     }
-                    
+
                     HStack {
                         Text("Category:")
                             .font(Theme.headlineFont)
@@ -48,7 +47,7 @@ struct ReadOnlyItemView: View {
                         Text(foodItem.category)
                             .font(Theme.bodyFont)
                     }
-                    
+
                     HStack {
                         Text("Location:")
                             .font(Theme.headlineFont)
@@ -59,7 +58,7 @@ struct ReadOnlyItemView: View {
                     }
                 }
                 .padding(.horizontal)
-                
+
                 Spacer()
             }
             .animation(.easeInOut, value: foodItem)
@@ -68,8 +67,8 @@ struct ReadOnlyItemView: View {
     }
 }
 
-private let dateFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.dateStyle = .medium
-    return formatter
-}()
+struct ReadOnlyItemView_Previews: PreviewProvider {
+    static var previews: some View {
+        ReadOnlyItemView(foodItem: FoodItem(name: "Apple", bestBeforeDate: Date(), category: "Fresh Produce", location: "Fridge", warningPeriod: 3))
+    }
+}

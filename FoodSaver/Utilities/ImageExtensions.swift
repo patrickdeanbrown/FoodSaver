@@ -1,8 +1,11 @@
-//
-//  ImageExtensions.swift
-//  FoodSaver
-//
-//  Created by Patrick Brown on 9/12/24.
-//
+import SwiftUI
 
-import Foundation
+extension Image {
+    func makeFoodViewPhotoBox() -> some View {
+        self.resizable()
+            .scaledToFit()
+            .frame(height: 100)
+            .clipShape(RoundedRectangle(cornerRadius: 10))
+            .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray, lineWidth: 2))
+    }
+}

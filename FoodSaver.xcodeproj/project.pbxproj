@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CB0E77232C9406E900B512BC /* AddModifyItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0E77222C9406E900B512BC /* AddModifyItemViewModel.swift */; };
+		CB0E77252C94078500B512BC /* ItemNameField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0E77242C94078500B512BC /* ItemNameField.swift */; };
+		CB0E77272C9407AD00B512BC /* ImagePickerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0E77262C9407AD00B512BC /* ImagePickerButton.swift */; };
+		CB0E77292C9407C900B512BC /* BestBeforeDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0E77282C9407C900B512BC /* BestBeforeDatePicker.swift */; };
+		CB0E772B2C9407E400B512BC /* CategoryPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0E772A2C9407E400B512BC /* CategoryPicker.swift */; };
+		CB0E772D2C9407FA00B512BC /* LocationPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0E772C2C9407FA00B512BC /* LocationPicker.swift */; };
+		CB0E772F2C94081B00B512BC /* ActionButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0E772E2C94081B00B512BC /* ActionButtons.swift */; };
+		CB0E77312C94084A00B512BC /* ImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0E77302C94084A00B512BC /* ImageExtensions.swift */; };
+		CB0E77332C94087500B512BC /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0E77322C94087500B512BC /* DateExtensions.swift */; };
+		CB0E77352C94089A00B512BC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0E77342C94089A00B512BC /* Constants.swift */; };
 		CB30C79F2C5F257500FDCBD1 /* FoodItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB30C79E2C5F257500FDCBD1 /* FoodItem.swift */; };
 		CB30C7A12C600D2A00FDCBD1 /* FoodItemTemp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB30C7A02C600D2A00FDCBD1 /* FoodItemTemp.swift */; };
 		CBD8D7462C9376C700D67D9F /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD8D7452C9376C700D67D9F /* MainViewModel.swift */; };
@@ -26,7 +36,6 @@
 		CBDC8ACD2C40B1B40043839D /* FoodItemRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDC8ACC2C40B1B40043839D /* FoodItemRow.swift */; };
 		CBDC8ADD2C40C15B0043839D /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDC8ADC2C40C15B0043839D /* ImagePicker.swift */; };
 		CBDC8ADF2C42006D0043839D /* ReadOnlyItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDC8ADE2C42006D0043839D /* ReadOnlyItemView.swift */; };
-		CBDC8AE12C4229840043839D /* FoodViewPhotoBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDC8AE02C4229840043839D /* FoodViewPhotoBox.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +56,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CB0E77222C9406E900B512BC /* AddModifyItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddModifyItemViewModel.swift; sourceTree = "<group>"; };
+		CB0E77242C94078500B512BC /* ItemNameField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemNameField.swift; sourceTree = "<group>"; };
+		CB0E77262C9407AD00B512BC /* ImagePickerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerButton.swift; sourceTree = "<group>"; };
+		CB0E77282C9407C900B512BC /* BestBeforeDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestBeforeDatePicker.swift; sourceTree = "<group>"; };
+		CB0E772A2C9407E400B512BC /* CategoryPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryPicker.swift; sourceTree = "<group>"; };
+		CB0E772C2C9407FA00B512BC /* LocationPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPicker.swift; sourceTree = "<group>"; };
+		CB0E772E2C94081B00B512BC /* ActionButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButtons.swift; sourceTree = "<group>"; };
+		CB0E77302C94084A00B512BC /* ImageExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtensions.swift; sourceTree = "<group>"; };
+		CB0E77322C94087500B512BC /* DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
+		CB0E77342C94089A00B512BC /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		CB30C79E2C5F257500FDCBD1 /* FoodItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodItem.swift; sourceTree = "<group>"; };
 		CB30C7A02C600D2A00FDCBD1 /* FoodItemTemp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodItemTemp.swift; sourceTree = "<group>"; };
 		CBD8D7452C9376C700D67D9F /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
@@ -68,7 +87,6 @@
 		CBDC8ACC2C40B1B40043839D /* FoodItemRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodItemRow.swift; sourceTree = "<group>"; };
 		CBDC8ADC2C40C15B0043839D /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		CBDC8ADE2C42006D0043839D /* ReadOnlyItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadOnlyItemView.swift; sourceTree = "<group>"; };
-		CBDC8AE02C4229840043839D /* FoodViewPhotoBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodViewPhotoBox.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +115,63 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CB0E771D2C94058300B512BC /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CB30C79E2C5F257500FDCBD1 /* FoodItem.swift */,
+				CB30C7A02C600D2A00FDCBD1 /* FoodItemTemp.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		CB0E771E2C94059600B512BC /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				CBD8D7452C9376C700D67D9F /* MainViewModel.swift */,
+				CB0E77222C9406E900B512BC /* AddModifyItemViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		CB0E771F2C9405AB00B512BC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CBDC8AC42C40A9E20043839D /* MainView.swift */,
+				CBDC8AC82C40AAAC0043839D /* AddModifyItemView.swift */,
+				CBDC8ADE2C42006D0043839D /* ReadOnlyItemView.swift */,
+				CBDC8ACC2C40B1B40043839D /* FoodItemRow.swift */,
+				CBDC8AC62C40AA530043839D /* SplashScreenView.swift */,
+				CBDC8A962C40A8570043839D /* ContentView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		CB0E77202C9405BD00B512BC /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				CBDC8ACA2C40B19A0043839D /* SearchBar.swift */,
+				CB0E77242C94078500B512BC /* ItemNameField.swift */,
+				CB0E77262C9407AD00B512BC /* ImagePickerButton.swift */,
+				CB0E77282C9407C900B512BC /* BestBeforeDatePicker.swift */,
+				CB0E772A2C9407E400B512BC /* CategoryPicker.swift */,
+				CB0E772C2C9407FA00B512BC /* LocationPicker.swift */,
+				CB0E772E2C94081B00B512BC /* ActionButtons.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		CB0E77212C9405D300B512BC /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				CBD8D7482C937A1800D67D9F /* Theme.swift */,
+				CBDC8ADC2C40C15B0043839D /* ImagePicker.swift */,
+				CB0E77302C94084A00B512BC /* ImageExtensions.swift */,
+				CB0E77322C94087500B512BC /* DateExtensions.swift */,
+				CB0E77342C94089A00B512BC /* Constants.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		CBD8D74A2C937A7F00D67D9F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -127,20 +202,12 @@
 		CBDC8A932C40A8570043839D /* FoodSaver */ = {
 			isa = PBXGroup;
 			children = (
-				CB30C79E2C5F257500FDCBD1 /* FoodItem.swift */,
+				CB0E771D2C94058300B512BC /* Models */,
+				CB0E771E2C94059600B512BC /* ViewModels */,
+				CB0E771F2C9405AB00B512BC /* Views */,
+				CB0E77202C9405BD00B512BC /* Components */,
+				CB0E77212C9405D300B512BC /* Utilities */,
 				CBDC8A942C40A8570043839D /* FoodSaverApp.swift */,
-				CBDC8AC42C40A9E20043839D /* MainView.swift */,
-				CBD8D7452C9376C700D67D9F /* MainViewModel.swift */,
-				CBDC8A962C40A8570043839D /* ContentView.swift */,
-				CBDC8AC62C40AA530043839D /* SplashScreenView.swift */,
-				CBDC8AC82C40AAAC0043839D /* AddModifyItemView.swift */,
-				CBDC8AE02C4229840043839D /* FoodViewPhotoBox.swift */,
-				CB30C7A02C600D2A00FDCBD1 /* FoodItemTemp.swift */,
-				CBDC8ACC2C40B1B40043839D /* FoodItemRow.swift */,
-				CBDC8ACA2C40B19A0043839D /* SearchBar.swift */,
-				CBDC8ADC2C40C15B0043839D /* ImagePicker.swift */,
-				CBDC8ADE2C42006D0043839D /* ReadOnlyItemView.swift */,
-				CBD8D7482C937A1800D67D9F /* Theme.swift */,
 				CBDC8AA42C40A85B0043839D /* FoodSaverTests */,
 				CBDC8A982C40A85B0043839D /* Assets.xcassets */,
 				CBDC8A9A2C40A85B0043839D /* Preview Content */,
@@ -309,20 +376,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB0E77332C94087500B512BC /* DateExtensions.swift in Sources */,
 				CB30C79F2C5F257500FDCBD1 /* FoodItem.swift in Sources */,
-				CBDC8AE12C4229840043839D /* FoodViewPhotoBox.swift in Sources */,
+				CB0E772B2C9407E400B512BC /* CategoryPicker.swift in Sources */,
+				CB0E77272C9407AD00B512BC /* ImagePickerButton.swift in Sources */,
+				CB0E77252C94078500B512BC /* ItemNameField.swift in Sources */,
+				CB0E77232C9406E900B512BC /* AddModifyItemViewModel.swift in Sources */,
+				CB0E772D2C9407FA00B512BC /* LocationPicker.swift in Sources */,
 				CBDC8ADD2C40C15B0043839D /* ImagePicker.swift in Sources */,
+				CB0E77292C9407C900B512BC /* BestBeforeDatePicker.swift in Sources */,
 				CB30C7A12C600D2A00FDCBD1 /* FoodItemTemp.swift in Sources */,
 				CBDC8AC72C40AA530043839D /* SplashScreenView.swift in Sources */,
 				CBD8D7462C9376C700D67D9F /* MainViewModel.swift in Sources */,
 				CBDC8A972C40A8570043839D /* ContentView.swift in Sources */,
+				CB0E77312C94084A00B512BC /* ImageExtensions.swift in Sources */,
 				CBDC8ADF2C42006D0043839D /* ReadOnlyItemView.swift in Sources */,
+				CB0E772F2C94081B00B512BC /* ActionButtons.swift in Sources */,
 				CBDC8AC52C40A9E20043839D /* MainView.swift in Sources */,
 				CBDC8ACB2C40B19A0043839D /* SearchBar.swift in Sources */,
 				CBDC8AC92C40AAAC0043839D /* AddModifyItemView.swift in Sources */,
 				CBDC8ACD2C40B1B40043839D /* FoodItemRow.swift in Sources */,
 				CBDC8A952C40A8570043839D /* FoodSaverApp.swift in Sources */,
 				CBD8D7492C937A1800D67D9F /* Theme.swift in Sources */,
+				CB0E77352C94089A00B512BC /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
