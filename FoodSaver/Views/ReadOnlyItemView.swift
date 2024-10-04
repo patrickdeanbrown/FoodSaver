@@ -67,8 +67,8 @@ struct ReadOnlyItemView: View {
     }
 }
 
-struct ReadOnlyItemView_Previews: PreviewProvider {
-    static var previews: some View {
-        ReadOnlyItemView(foodItem: FoodItem(name: "Apple", bestBeforeDate: Date(), category: "Fresh Produce", location: "Fridge", warningPeriod: 3))
-    }
-}
+//struct ReadOnlyItemView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ReadOnlyItemView(foodItem: FoodItem(name: "Apple", bestBeforeDate: Date(), category: "Fresh Produce", location: "Fridge", warningPeriod: 3))
+//    }
+//}

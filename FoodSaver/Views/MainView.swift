@@ -100,10 +100,14 @@ struct MainView: View {
                 }
             }
             .sheet(isPresented: $isShowingEditView) {
-                AddModifyItemView(foodItem: selectedFoodItem)
+                if let selectedFoodItem = selectedFoodItem {
+                    AddModifyItemView(viewModel: AddModifyItemViewModel(foodItem: selectedFoodItem))
+                } else {
+                    AddModifyItemView(viewModel: AddModifyItemViewModel())
+                }
             }
             // Confetti when a new item is added
-            .onChange(of: foodItems.count) { _ in
+            .onChange(of: foodItems.count) { _, _ in
                 triggerConfetti()
             }
             .confettiCannon(counter: $confettiCounter, num: Constants.confettiCount, radius: Constants.confettiRadius)

@@ -40,8 +40,8 @@ struct FoodItemRow: View {
     }
 }
 
-struct FoodItemRow_Previews: PreviewProvider {
-    static var previews: some View {
-        FoodItemRow(foodItem: FoodItem(name: "Apple", bestBeforeDate: Date(), category: "Fresh Produce", location: "Fridge", warningPeriod: 3))
-    }
-}
+//struct FoodItemRow_Previews: PreviewProvider {
+//    static var previews: some View {
+//        FoodItemRow(foodItem: FoodItem(name: "Apple", bestBeforeDate: Date(), category: "Fresh Produce", location: "Fridge", warningPeriod: 3))
+//    }
+//}

@@ -5,7 +5,7 @@ import ConfettiSwiftUI
 struct AddModifyItemView: View {
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.modelContext) private var context
-    @StateObject private var viewModel: AddModifyItemViewModel
+    @StateObject var viewModel: AddModifyItemViewModel
     @FocusState private var isInputActive: Bool
 
     let categories = [
@@ -26,8 +26,9 @@ struct AddModifyItemView: View {
     // Confetti counter
     @State private var confettiCounter: Int = 0
 
-    init(foodItem: FoodItem? = nil) {
-        _viewModel = StateObject(wrappedValue: AddModifyItemViewModel(foodItem: foodItem))
+    // Updated initializer to take a viewModel parameter
+    init(viewModel: AddModifyItemViewModel) {
+        _viewModel = StateObject(wrappedValue: viewModel)
     }
 
     var body: some View {
@@ -41,7 +42,7 @@ struct AddModifyItemView: View {
                 ItemNameField(name: $viewModel.temporaryFoodItem.name, isInputActive: $isInputActive)
 
                 ImagePickerButton(temporaryFoodItem: $viewModel.temporaryFoodItem)
-                    .onChange(of: viewModel.temporaryFoodItem.inputImage) { _ in
+                    .onChange(of: viewModel.temporaryFoodItem.inputImage) { _, _ in
                         viewModel.loadImage()
                     }
 
@@ -86,3 +87,12 @@ struct AddModifyItemView: View {
         confettiCounter += 1
     }
 }
+
+struct AddModifyItemView_Previews: PreviewProvider {
+    static var previews: some View {
+        let sampleFoodItem = FoodItem(name: "Apple", bestBeforeDate: Date(), category: "Fresh Produce", location: "Fridge", warningPeriod: 3)
+        let viewModel = AddModifyItemViewModel(foodItem: sampleFoodItem)
+        AddModifyItemView(viewModel: viewModel)
+    }
+}
+
