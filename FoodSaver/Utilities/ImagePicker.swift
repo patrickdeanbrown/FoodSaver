@@ -1,7 +1,10 @@
 import SwiftUI
 import UIKit
 
+/// Presents `UIImagePickerController` from SwiftUI and binds the selected image.
+/// Set `sourceType` to control whether the camera or photo library is shown.
 struct ImagePicker: UIViewControllerRepresentable {
+    /// Handles delegate callbacks from `UIImagePickerController`.
     class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
         let parent: ImagePicker
 
@@ -9,6 +12,7 @@ struct ImagePicker: UIViewControllerRepresentable {
             self.parent = parent
         }
 
+        /// Called when the user selects an image.
         func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
             if let image = info[.originalImage] as? UIImage {
                 parent.image = image
@@ -16,6 +20,7 @@ struct ImagePicker: UIViewControllerRepresentable {
             parent.presentationMode.wrappedValue.dismiss()
         }
 
+        /// Called when the picker is cancelled without selecting an image.
         func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
             parent.presentationMode.wrappedValue.dismiss()
         }
