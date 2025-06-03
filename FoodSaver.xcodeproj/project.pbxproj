@@ -35,7 +35,16 @@
 		CBDC8ACB2C40B19A0043839D /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDC8ACA2C40B19A0043839D /* SearchBar.swift */; };
 		CBDC8ACD2C40B1B40043839D /* FoodItemRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDC8ACC2C40B1B40043839D /* FoodItemRow.swift */; };
 		CBDC8ADD2C40C15B0043839D /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDC8ADC2C40C15B0043839D /* ImagePicker.swift */; };
-		CBDC8ADF2C42006D0043839D /* ReadOnlyItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDC8ADE2C42006D0043839D /* ReadOnlyItemView.swift */; };
+                CBDC8ADF2C42006D0043839D /* ReadOnlyItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDC8ADE2C42006D0043839D /* ReadOnlyItemView.swift */; };
+                85a39c21fe1247dd815f80bf /* FoodItemStatusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4d8c90db75ee4d83b15c7146 /* FoodItemStatusTests.swift */; };
+                c347134b299846529d36ba95 /* FoodItemInitializationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6c5071c8a23c4bd2a62f6bfe /* FoodItemInitializationTests.swift */; };
+                c0421dcd98764b72bade3c36 /* AddModifyItemViewModelSaveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4bca94b34201428b9d37715b /* AddModifyItemViewModelSaveTests.swift */; };
+                d092234387734643a26d7a28 /* AddModifyItemViewModelErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = caada24f6aec45bda3e0580f /* AddModifyItemViewModelErrorTests.swift */; };
+                8f9e81a6430041deb33880d1 /* MainViewModelFilterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8356984f7dab4a1380e96f0f /* MainViewModelFilterTests.swift */; };
+                7f2c0cb87fc44eb9a536693d /* DateFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = b49dca643ec4403cab4391c6 /* DateFormatterTests.swift */; };
+                204b7dfef3c8430895767b9f /* AddItemFlowUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ff23175b50e47eea54470f4 /* AddItemFlowUITest.swift */; };
+                18cebdbcc9fc4d44860d5e68 /* EditAndDeleteFlowUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = cb0959394bc94e42840a1259 /* EditAndDeleteFlowUITest.swift */; };
+                a6da40d7395b41c5a75c40bc /* SearchUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59743cf501bd4d7abb30e97a /* SearchUITest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,7 +88,16 @@
 		CBDC8AA52C40A85B0043839D /* FoodSaverTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodSaverTests.swift; sourceTree = "<group>"; };
 		CBDC8AAB2C40A85B0043839D /* FoodSaverUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FoodSaverUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBDC8AAF2C40A85B0043839D /* FoodSaverUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodSaverUITests.swift; sourceTree = "<group>"; };
-		CBDC8AB12C40A85B0043839D /* FoodSaverUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodSaverUITestsLaunchTests.swift; sourceTree = "<group>"; };
+                CBDC8AB12C40A85B0043839D /* FoodSaverUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodSaverUITestsLaunchTests.swift; sourceTree = "<group>"; };
+                4d8c90db75ee4d83b15c7146 /* FoodItemStatusTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodItemStatusTests.swift; sourceTree = "<group>"; };
+                6c5071c8a23c4bd2a62f6bfe /* FoodItemInitializationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodItemInitializationTests.swift; sourceTree = "<group>"; };
+                4bca94b34201428b9d37715b /* AddModifyItemViewModelSaveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddModifyItemViewModelSaveTests.swift; sourceTree = "<group>"; };
+                caada24f6aec45bda3e0580f /* AddModifyItemViewModelErrorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddModifyItemViewModelErrorTests.swift; sourceTree = "<group>"; };
+                8356984f7dab4a1380e96f0f /* MainViewModelFilterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModelFilterTests.swift; sourceTree = "<group>"; };
+                b49dca643ec4403cab4391c6 /* DateFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatterTests.swift; sourceTree = "<group>"; };
+                0ff23175b50e47eea54470f4 /* AddItemFlowUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemFlowUITest.swift; sourceTree = "<group>"; };
+                cb0959394bc94e42840a1259 /* EditAndDeleteFlowUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAndDeleteFlowUITest.swift; sourceTree = "<group>"; };
+                59743cf501bd4d7abb30e97a /* SearchUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUITest.swift; sourceTree = "<group>"; };
 		CBDC8AC42C40A9E20043839D /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		CBDC8AC62C40AA530043839D /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 		CBDC8AC82C40AAAC0043839D /* AddModifyItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddModifyItemView.swift; sourceTree = "<group>"; };
@@ -223,23 +241,32 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		CBDC8AA42C40A85B0043839D /* FoodSaverTests */ = {
-			isa = PBXGroup;
-			children = (
-				CBDC8AA52C40A85B0043839D /* FoodSaverTests.swift */,
-			);
-			path = FoodSaverTests;
-			sourceTree = "<group>";
-		};
-		CBDC8AAE2C40A85B0043839D /* FoodSaverUITests */ = {
-			isa = PBXGroup;
-			children = (
-				CBDC8AAF2C40A85B0043839D /* FoodSaverUITests.swift */,
-				CBDC8AB12C40A85B0043839D /* FoodSaverUITestsLaunchTests.swift */,
-			);
-			path = FoodSaverUITests;
-			sourceTree = "<group>";
-		};
+                CBDC8AA42C40A85B0043839D /* FoodSaverTests */ = {
+                        isa = PBXGroup;
+                        children = (
+                                CBDC8AA52C40A85B0043839D /* FoodSaverTests.swift */, 
+                                4d8c90db75ee4d83b15c7146 /* FoodItemStatusTests.swift */,
+                                6c5071c8a23c4bd2a62f6bfe /* FoodItemInitializationTests.swift */,
+                                4bca94b34201428b9d37715b /* AddModifyItemViewModelSaveTests.swift */,
+                                caada24f6aec45bda3e0580f /* AddModifyItemViewModelErrorTests.swift */,
+                                8356984f7dab4a1380e96f0f /* MainViewModelFilterTests.swift */,
+                                b49dca643ec4403cab4391c6 /* DateFormatterTests.swift */,
+                        );
+                        path = FoodSaverTests;
+                        sourceTree = "<group>";
+                };
+                CBDC8AAE2C40A85B0043839D /* FoodSaverUITests */ = {
+                        isa = PBXGroup;
+                        children = (
+                                CBDC8AAF2C40A85B0043839D /* FoodSaverUITests.swift */,
+                                CBDC8AB12C40A85B0043839D /* FoodSaverUITestsLaunchTests.swift */,
+                                0ff23175b50e47eea54470f4 /* AddItemFlowUITest.swift */,
+                                cb0959394bc94e42840a1259 /* EditAndDeleteFlowUITest.swift */,
+                                59743cf501bd4d7abb30e97a /* SearchUITest.swift */,
+                        );
+                        path = FoodSaverUITests;
+                        sourceTree = "<group>";
+                };
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -402,23 +429,32 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CBDC8A9D2C40A85B0043839D /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				CBDC8AA62C40A85B0043839D /* FoodSaverTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		CBDC8AA72C40A85B0043839D /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				CBDC8AB22C40A85B0043839D /* FoodSaverUITestsLaunchTests.swift in Sources */,
-				CBDC8AB02C40A85B0043839D /* FoodSaverUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
+                CBDC8A9D2C40A85B0043839D /* Sources */ = {
+                        isa = PBXSourcesBuildPhase;
+                        buildActionMask = 2147483647;
+                        files = (
+                                CBDC8AA62C40A85B0043839D /* FoodSaverTests.swift in Sources */,
+                                85a39c21fe1247dd815f80bf /* FoodItemStatusTests.swift in Sources */,
+                                c347134b299846529d36ba95 /* FoodItemInitializationTests.swift in Sources */,
+                                c0421dcd98764b72bade3c36 /* AddModifyItemViewModelSaveTests.swift in Sources */,
+                                d092234387734643a26d7a28 /* AddModifyItemViewModelErrorTests.swift in Sources */,
+                                8f9e81a6430041deb33880d1 /* MainViewModelFilterTests.swift in Sources */,
+                                7f2c0cb87fc44eb9a536693d /* DateFormatterTests.swift in Sources */,
+                        );
+                        runOnlyForDeploymentPostprocessing = 0;
+                };
+                CBDC8AA72C40A85B0043839D /* Sources */ = {
+                        isa = PBXSourcesBuildPhase;
+                        buildActionMask = 2147483647;
+                        files = (
+                                CBDC8AB22C40A85B0043839D /* FoodSaverUITestsLaunchTests.swift in Sources */,
+                                CBDC8AB02C40A85B0043839D /* FoodSaverUITests.swift in Sources */,
+                                204b7dfef3c8430895767b9f /* AddItemFlowUITest.swift in Sources */,
+                                18cebdbcc9fc4d44860d5e68 /* EditAndDeleteFlowUITest.swift in Sources */,
+                                a6da40d7395b41c5a75c40bc /* SearchUITest.swift in Sources */,
+                        );
+                        runOnlyForDeploymentPostprocessing = 0;
+                };
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
