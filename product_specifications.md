@@ -24,9 +24,9 @@ Status: Enum that is the status of the food. It can either be "Expired", "Expiri
 
 The data is likely going to be lightweight due to households having a finite amount of space for food. The information is also not sensitive, so it can be stored in plain text. The following should be stored in the app as JSON: Name, path to Picture, Best Before Date, Category, Location, Status. The Picture should be stored as an image file in the app in a Pictures folder.
 
-## Programming Pardigms and APIs
+## Programming Paradigms and APIs
 
-The Food Saver app is intended to be an iOS app with a native look an feel. It should feel like an app familiar to iOS users from an interface and asthetics perspective. The app will use Apple's built-in camera and photo library to take pictures of foods.
+The Food Saver app is intended to be an iOS app with a native look and feel. It should feel like an app familiar to iOS users from an interface and aesthetics perspective. The app will use Apple's built-in camera and photo library to take pictures of foods.
 
 Core Language: Swift
 UI Library: Swift UI
@@ -48,7 +48,7 @@ File Structure
 
 ### Splash Screen
 
-After the app is started a spash screen showing the app logo appears for 1.5 seconds. The it is removed to show the main view. The "Splash Scree" will show the text "Food Saver" and a picture of emoji foods, peach, ramen, cake, and lettuce, below the text. The text will be large and centered vertically and horizontally.
+After the app is started, a splash screen showing the app logo appears for 1.5 seconds. Then it is removed to show the main view. The "Splash Screen" will show the text "Food Saver" and a picture of emoji foods—peach, ramen, cake, and lettuce—below the text. The text will be large and centered vertically and horizontally.
 
 ### Main View
 
@@ -208,6 +208,6 @@ For each test case, report the following:
 - **Result**: Pass
 - **Description**: Splash Screen is displayed correctly. MainView displays after 1.5 seconds.
 - **Steps to Reproduce**: Detailed steps to reproduce the issue, if applicable.
-- **Screenshots/Logs**: 
+- **Screenshots/Logs**:
 
 By conducting these tests, you can identify and fix any functionality issues, ensuring a smooth and reliable user experience for the Food Saver app.
