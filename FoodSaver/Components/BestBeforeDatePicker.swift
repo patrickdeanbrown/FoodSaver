@@ -10,6 +10,7 @@ struct BestBeforeDatePicker: View {
                 .foregroundColor(Theme.textSecondary)
             DatePicker("Select a Date", selection: $bestBeforeDate, displayedComponents: .date)
                 .datePickerStyle(GraphicalDatePickerStyle())
+                .tint(Theme.primaryColor)
                 .padding(.vertical, 8)
                 .padding(.horizontal, 8)
                 .background(Theme.surfaceAlt)
