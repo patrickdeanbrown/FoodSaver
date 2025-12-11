@@ -3,6 +3,7 @@ import SwiftUI
 
 struct FoodItemRow: View {
     let foodItem: FoodItem
+    @Environment(\.colorScheme) private var colorScheme
 
     /// Formatter for the best before date.
     private static var dateFormatter: DateFormatter = {
@@ -13,66 +14,68 @@ struct FoodItemRow: View {
     }()
 
     var body: some View {
-        HStack(alignment: .top, spacing: 12) { // Added spacing
-            // Status Emoji
+        HStack(alignment: .top, spacing: Theme.Spacing.sm) {
             Text(foodItem.statusEmoji)
-                .font(.title2) // Slightly larger emoji
-                .padding(.top, 2) // Align a bit better with multi-line text
+                .font(.title2)
+                .padding(.top, 2)
 
-            VStack(alignment: .leading, spacing: 4) {
+            VStack(alignment: .leading, spacing: 6) {
                 Text(foodItem.name)
                     .font(Theme.headlineFont)
-                    .foregroundColor(Theme.primaryColor)
-                    .lineLimit(2) // Allow for slightly longer names
+                    .foregroundColor(Theme.textPrimary)
+                    .lineLimit(2)
 
-                HStack {
-                    Image(systemName: "calendar") // Calendar icon
+                HStack(spacing: 6) {
+                    Image(systemName: "calendar")
                         .font(.caption)
-                        .foregroundColor(Theme.secondaryColor)
+                        .foregroundColor(Theme.textSecondary)
                     Text("Best Before: \(foodItem.bestBeforeDate, formatter: Self.dateFormatter)")
-                        .font(Theme.bodyFont.weight(.medium)) // Make date stand out a bit
-                        .foregroundColor(Theme.secondaryColor)
+                        .font(Theme.bodyFont.weight(.medium))
+                        .foregroundColor(Theme.textSecondary)
                 }
 
-                HStack(spacing: 4) { // For Category and Location
+                HStack(spacing: 6) {
                     Image(systemName: "tag.fill")
-                         .font(.caption)
-                         .foregroundColor(Theme.secondaryColor.opacity(0.8))
+                        .font(.caption)
+                        .foregroundColor(Theme.textTertiary)
                     Text(foodItem.category)
                         .font(Theme.bodyFont)
-                        .foregroundColor(Theme.secondaryColor.opacity(0.8))
+                        .foregroundColor(Theme.textTertiary)
                         .lineLimit(1)
 
-                    Text("·") // Separator
+                    Text("·")
                         .font(Theme.bodyFont)
-                        .foregroundColor(Theme.secondaryColor.opacity(0.8))
-                    
+                        .foregroundColor(Theme.textTertiary)
+
                     Image(systemName: "location.fill")
                         .font(.caption)
-                        .foregroundColor(Theme.secondaryColor.opacity(0.8))
+                        .foregroundColor(Theme.textTertiary)
                     Text(foodItem.location)
                         .font(Theme.bodyFont)
-                        .foregroundColor(Theme.secondaryColor.opacity(0.8))
+                        .foregroundColor(Theme.textTertiary)
                         .lineLimit(1)
                 }
             }
 
-            Spacer() // Pushes content to the left and emoji to the far right if uncommented (or use it like this for left alignment of info)
-
-            // Optional: If you still want a subtle right-side visual indicator in addition to emoji
-            // Circle()
-            //     .fill(foodItem.statusColor.opacity(0.7))
-            //     .frame(width: 12, height: 12)
-            //     .padding(.trailing, 5)
+            Spacer()
         }
-        .padding()
+        .padding(Theme.Spacing.md)
         .background(
-            RoundedRectangle(cornerRadius: 12) // Slightly more pronounced corner radius
-                .fill(foodItem.statusColor.opacity(0.15)) // Use statusColor with opacity
-                .shadow(color: Color.black.opacity(0.08), radius: 4, x: 0, y: 2) // Softer shadow
+            RoundedRectangle(cornerRadius: 16)
+                .fill(Theme.surface)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 16)
+                        .fill(Theme.statusBackground(for: foodItem.status).opacity(0.45))
+                )
+                .shadow(
+                    color: colorScheme == .dark ? Theme.cardShadowDark : Theme.cardShadow,
+                    radius: 8,
+                    x: 0,
+                    y: 4
+                )
         )
-        .padding(.vertical, 6) // Increased vertical padding between rows
-        .animation(.spring(), value: foodItem.status) // Animate based on status changes too
+        .padding(.vertical, Theme.Spacing.sm)
+        .animation(.spring(), value: foodItem.status)
         .accessibilityElement(children: .ignore)
         .accessibilityLabel("\(foodItem.name), \(foodItem.status.rawValue). Best before \(Self.dateFormatter.string(from: foodItem.bestBeforeDate)). Category \(foodItem.category). Location \(foodItem.location).")
         .accessibilityHint("Swipe for actions like modify or delete.")

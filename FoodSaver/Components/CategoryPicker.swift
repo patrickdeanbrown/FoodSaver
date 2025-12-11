@@ -6,10 +6,10 @@ struct CategoryPicker: View {
     @Binding var warningPeriod: Int
 
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: 6) {
             Text("Category")
                 .font(Theme.headlineFont)
-                .foregroundColor(Theme.secondaryColor)
+                .foregroundColor(Theme.textSecondary)
             Menu {
                 ForEach(categories.keys.sorted(), id: \.self) { category in
                     Button(action: {
@@ -22,16 +22,21 @@ struct CategoryPicker: View {
             } label: {
                 HStack {
                     Text(category.isEmpty ? "Select category" : category)
-                        .foregroundColor(category.isEmpty ? .gray : .primary)
+                        .foregroundColor(category.isEmpty ? Theme.textTertiary : Theme.textPrimary)
                     Spacer()
                     Image(systemName: "chevron.down")
-                        .foregroundColor(.gray)
+                        .foregroundColor(Theme.textTertiary)
                 }
-                .padding()
-                .background(Color(UIColor.secondarySystemBackground))
-                .cornerRadius(8)
+                .padding(.vertical, 12)
+                .padding(.horizontal, 14)
+                .background(Theme.surface)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 12)
+                        .stroke(Theme.border, lineWidth: 1)
+                )
+                .cornerRadius(12)
             }
         }
-        .padding(.horizontal)
+        .padding(.horizontal, Theme.Spacing.md)
     }
 }

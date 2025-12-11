@@ -48,62 +48,59 @@ struct MainView: View {
 
     var body: some View {
         NavigationStack {
-            VStack {
-                // Search bar and category filter
-                SearchBar(
-                    text: $searchText,
-                    selectedCategory: $selectedCategory,
-                    isSearchFieldActive: $isSearchFieldActive
-                )
-                .padding(.horizontal)
+            ZStack {
+                Theme.background
+                    .ignoresSafeArea()
 
-                // Status filter
-                Picker("Status", selection: $selectedStatus) {
-                    Text("All").tag("All")
-                    Text("Fresh").tag("Fresh")
-                    Text("Expiring").tag("Expiring")
-                    Text("Expired").tag("Expired")
-                }
-                .pickerStyle(SegmentedPickerStyle())
-                .padding(.horizontal)
+                VStack(spacing: Theme.Spacing.md) {
+                    header
+                        .padding(.horizontal, Theme.Spacing.md)
+                        .padding(.top, Theme.Spacing.md)
 
-                // List of food items
-                List {
-                    ForEach(filteredFoodItems) { foodItem in
-                        NavigationLink(destination: ReadOnlyItemView(foodItem: foodItem)) {
-                            FoodItemRow(foodItem: foodItem)
-                        }
-                        .listRowSeparator(.hidden)
-                        .swipeActions(edge: .trailing) {
-                            Button(role: .destructive) {
-                                deleteFoodItem(foodItem)
-                            } label: {
-                                Label("Delete", systemImage: "trash")
-                            }
-                            Button {
-                                selectedFoodItem = foodItem
-                                isShowingEditView = true
-                            } label: {
-                                Label("Modify", systemImage: "pencil")
-                            }
-                            .tint(.blue)
-                        }
+                    SearchBar(
+                        text: $searchText,
+                        selectedCategory: $selectedCategory,
+                        isSearchFieldActive: $isSearchFieldActive
+                    )
+                    .padding(.horizontal, Theme.Spacing.md)
+
+                    Picker("Status", selection: $selectedStatus) {
+                        Text("All").tag("All")
+                        Text("Fresh").tag("Fresh")
+                        Text("Expiring").tag("Expiring")
+                        Text("Expired").tag("Expired")
                     }
-                }
-                .listStyle(PlainListStyle())
-                .scrollContentBackground(.hidden) // Removes the default gray background
-            }
-            .navigationTitle("Food Saver")
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: {
-                        addNewItem()
-                    }) {
-                        Image(systemName: "plus.circle.fill")
-                            .foregroundColor(.blue)
+                    .pickerStyle(.segmented)
+                    .tint(Theme.secondaryColor)
+                    .padding(.horizontal, Theme.Spacing.md)
+
+                    List {
+                        ForEach(filteredFoodItems) { foodItem in
+                            NavigationLink(destination: ReadOnlyItemView(foodItem: foodItem)) {
+                                FoodItemRow(foodItem: foodItem)
+                            }
+                            .listRowSeparator(.hidden)
+                            .listRowInsets(EdgeInsets())
+                            .swipeActions(edge: .trailing) {
+                                Button(role: .destructive) {
+                                    deleteFoodItem(foodItem)
+                                } label: {
+                                    Label("Delete", systemImage: "trash")
+                                }
+                                Button {
+                                    selectedFoodItem = foodItem
+                                    isShowingEditView = true
+                                } label: {
+                                    Label("Modify", systemImage: "pencil")
+                                }
+                                .tint(Theme.primaryColor)
+                            }
+                        }
+                        .listRowBackground(Color.clear)
                     }
-                    .accessibilityLabel("Add New Item")
-                    .accessibilityHint("Adds a new food item to your list")
+                    .listStyle(.plain)
+                    .scrollContentBackground(.hidden)
+                    .background(Color.clear)
                 }
             }
             .sheet(isPresented: $isShowingEditView) {
@@ -124,6 +121,38 @@ struct MainView: View {
             }, message: {
                 Text(errorMessage)
             })
+            .toolbar(.hidden)
+        }
+    }
+
+    private var header: some View {
+        HStack(alignment: .center, spacing: Theme.Spacing.md) {
+            VStack(alignment: .leading, spacing: 4) {
+                Text("Food Saver")
+                    .font(Theme.displayFont)
+                    .foregroundColor(Theme.textPrimary)
+                Text("Stay ahead of freshness")
+                    .font(Theme.captionFont)
+                    .foregroundColor(Theme.textSecondary)
+            }
+
+            Spacer()
+
+            Button(action: { addNewItem() }) {
+                HStack(spacing: 8) {
+                    Image(systemName: "plus")
+                        .font(.headline)
+                    Text("Add")
+                        .font(Theme.bodyFont.weight(.semibold))
+                }
+                .foregroundColor(.white)
+                .padding(.vertical, 10)
+                .padding(.horizontal, 14)
+                .background(Theme.primaryColor)
+                .clipShape(Capsule())
+                .shadow(color: Theme.cardShadow.opacity(0.6), radius: 8, x: 0, y: 4)
+            }
+            .accessibilityLabel("Add new item")
         }
     }
 

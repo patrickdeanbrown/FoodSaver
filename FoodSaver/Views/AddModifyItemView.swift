@@ -37,56 +37,63 @@ struct AddModifyItemView: View {
     }
 
     var body: some View {
-        ScrollView {
-            VStack(spacing: 20) {
-                Text(viewModel.isNewItem ? "Add Food Item" : "Modify Food Item")
-                    .font(Theme.titleFont)
-                    .foregroundColor(Theme.primaryColor)
-                    .padding(.top)
+        ZStack {
+            Theme.background
+                .ignoresSafeArea()
 
-                ItemNameField(name: $viewModel.temporaryFoodItem.name, isInputActive: $isInputActive)
+            ScrollView {
+                VStack(spacing: Theme.Spacing.lg) {
+                    Text(viewModel.isNewItem ? "Add Food Item" : "Modify Food Item")
+                        .font(Theme.titleFont)
+                        .foregroundColor(Theme.textPrimary)
+                        .padding(.top)
 
-                ImagePickerButton(temporaryFoodItem: $viewModel.temporaryFoodItem)
-                    .onChange(of: viewModel.temporaryFoodItem.inputImage) { _, _ in
-                        viewModel.loadImage()
-                    }
+                    ItemNameField(name: $viewModel.temporaryFoodItem.name, isInputActive: $isInputActive)
 
-                BestBeforeDatePicker(bestBeforeDate: $viewModel.temporaryFoodItem.bestBeforeDate)
-
-                CategoryPicker(category: $viewModel.temporaryFoodItem.category, categories: categories, warningPeriod: $viewModel.temporaryFoodItem.warningPeriod)
-
-                LocationPicker(location: $viewModel.temporaryFoodItem.location, locations: locations)
-
-                Spacer()
-
-                ActionButtons(
-                    onCancel: {
-                        dismiss()
-                    },
-                    onSave: {
-                        viewModel.saveChanges(context: context)
-                        guard !viewModel.showError else { return }
-
-                        if viewModel.isNewItem && !reduceMotion {
-                            triggerConfetti()
+                    ImagePickerButton(temporaryFoodItem: $viewModel.temporaryFoodItem)
+                        .padding(.horizontal, Theme.Spacing.md)
+                        .onChange(of: viewModel.temporaryFoodItem.inputImage) { _, _ in
+                            viewModel.loadImage()
                         }
-                        // Delay dismissal to allow confetti to display
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+
+                    BestBeforeDatePicker(bestBeforeDate: $viewModel.temporaryFoodItem.bestBeforeDate)
+
+                    CategoryPicker(category: $viewModel.temporaryFoodItem.category, categories: categories, warningPeriod: $viewModel.temporaryFoodItem.warningPeriod)
+
+                    LocationPicker(location: $viewModel.temporaryFoodItem.location, locations: locations)
+
+                    Spacer(minLength: Theme.Spacing.lg)
+
+                    ActionButtons(
+                        onCancel: {
                             dismiss()
-                        }
-                    }
-                )
-                .disabled(isSaveDisabled)
-                .opacity(isSaveDisabled ? 0.6 : 1)
-                .padding(.horizontal)
+                        },
+                        onSave: {
+                            viewModel.saveChanges(context: context)
+                            guard !viewModel.showError else { return }
 
-                if isSaveDisabled {
-                    Text("Enter a name, category, and location to save.")
-                        .font(.footnote)
-                        .foregroundColor(.red)
-                        .padding(.horizontal)
-                        .frame(maxWidth: .infinity, alignment: .leading)
+                            if viewModel.isNewItem && !reduceMotion {
+                                triggerConfetti()
+                            }
+                            // Delay dismissal to allow confetti to display
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                                dismiss()
+                            }
+                        }
+                    )
+                    .disabled(isSaveDisabled)
+                    .opacity(isSaveDisabled ? 0.6 : 1)
+                    .padding(.horizontal, Theme.Spacing.md)
+
+                    if isSaveDisabled {
+                        Text("Enter a name, category, and location to save.")
+                            .font(Theme.captionFont)
+                            .foregroundColor(Theme.statusText(for: .expired))
+                            .padding(.horizontal, Theme.Spacing.md)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                    }
                 }
+                .padding(.bottom, Theme.Spacing.lg)
             }
         }
         .scrollDismissesKeyboard(.interactively)
