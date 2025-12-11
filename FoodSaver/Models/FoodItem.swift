@@ -1,7 +1,6 @@
 import Foundation
-import SwiftUICore
+import SwiftUI
 import SwiftData
-import UIKit
 
 enum FoodStatus: String, Codable {
     case expired = "Expired"

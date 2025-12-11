@@ -7,9 +7,17 @@ struct SearchBar: View {
 
     var body: some View {
         HStack {
-            TextField("Search...", text: $text)
+            TextField("Search items", text: $text)
                 .focused($isSearchFieldActive)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
+                .textInputAutocapitalization(.never)
+                .disableAutocorrection(true)
+                .submitLabel(.search)
+                .accessibilityLabel("Search field")
+                .accessibilityHint("Enter text to filter food items")
+                .onSubmit {
+                    isSearchFieldActive = false
+                }
             Picker("Search by", selection: $selectedCategory) {
                 Text("Name").tag("Name")
                 Text("Category").tag("Category")
@@ -18,8 +26,5 @@ struct SearchBar: View {
             .pickerStyle(MenuPickerStyle())
         }
         .padding()
-        .onTapGesture {
-            isSearchFieldActive = false
-        }
     }
 }

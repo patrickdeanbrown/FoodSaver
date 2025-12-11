@@ -1,9 +1,11 @@
 import SwiftUI
 import SwiftData
 import ConfettiSwiftUI
+import OSLog
 
 struct MainView: View {
     @Environment(\.modelContext) private var context
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     @FocusState private var isSearchFieldActive: Bool
     @Query private var foodItems: [FoodItem]
@@ -16,6 +18,10 @@ struct MainView: View {
 
     // Confetti counter
     @State private var confettiCounter: Int = 0
+    @State private var showErrorAlert = false
+    @State private var errorMessage = ""
+
+    private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "FoodSaver", category: "MainView")
 
     var filteredFoodItems: [FoodItem] {
         var filtered = foodItems
@@ -41,7 +47,7 @@ struct MainView: View {
     }
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack {
                 // Search bar and category filter
                 SearchBar(
@@ -67,6 +73,7 @@ struct MainView: View {
                         NavigationLink(destination: ReadOnlyItemView(foodItem: foodItem)) {
                             FoodItemRow(foodItem: foodItem)
                         }
+                        .listRowSeparator(.hidden)
                         .swipeActions(edge: .trailing) {
                             Button(role: .destructive) {
                                 deleteFoodItem(foodItem)
@@ -108,12 +115,15 @@ struct MainView: View {
             }
             // Confetti when a new item is added
             .onChange(of: foodItems.count) { _, _ in
+                guard !reduceMotion else { return }
                 triggerConfetti()
             }
-            .confettiCannon(counter: $confettiCounter, num: Constants.confettiCount, radius: Constants.confettiRadius)
-            .onAppear {
-                UITableView.appearance().separatorStyle = .none // Remove separators
-            }
+            .confettiCannon(counter: reduceMotion ? .constant(0) : $confettiCounter, num: Constants.confettiCount, radius: Constants.confettiRadius)
+            .alert("Unable to Save Changes", isPresented: $showErrorAlert, actions: {
+                Button("OK", role: .cancel) { }
+            }, message: {
+                Text(errorMessage)
+            })
         }
     }
 
@@ -131,7 +141,9 @@ struct MainView: View {
         do {
             try context.save()
         } catch {
-            print("Error saving context: \(error)")
+            logger.error("Error saving context: \(error.localizedDescription)")
+            errorMessage = "We couldn't update your food list. Please try again."
+            showErrorAlert = true
         }
     }
 

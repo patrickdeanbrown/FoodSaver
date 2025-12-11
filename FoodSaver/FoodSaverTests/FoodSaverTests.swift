@@ -1,36 +1,45 @@
-//
-//  FoodSaverTests.swift
-//  FoodSaverTests
-//
-//  Created by Patrick Brown on 7/11/24.
-//
-
 import XCTest
+import SwiftData
 @testable import FoodSaver
 
+@MainActor
 final class FoodSaverTests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    func testFoodItemStatusFreshExpiringExpired() {
+        let calendar = Calendar.current
+
+        let freshDate = calendar.date(byAdding: .day, value: 5, to: Date())!
+        let expiringDate = calendar.date(byAdding: .day, value: 1, to: Date())!
+        let expiredDate = calendar.date(byAdding: .day, value: -1, to: Date())!
+
+        XCTAssertEqual(FoodItem(name: "Fresh", bestBeforeDate: freshDate, category: "Produce", location: "Fridge", warningPeriod: 2).status, .fresh)
+        XCTAssertEqual(FoodItem(name: "Almost Done", bestBeforeDate: expiringDate, category: "Dairy", location: "Fridge", warningPeriod: 3).status, .expiring)
+        XCTAssertEqual(FoodItem(name: "Old", bestBeforeDate: expiredDate, category: "Pantry", location: "Cupboard", warningPeriod: 3).status, .expired)
     }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    func testViewModelBlocksInvalidSaves() throws {
+        let container = try ModelContainer(for: FoodItem.self, configurations: ModelConfiguration(isStoredInMemoryOnly: true))
+        let viewModel = AddModifyItemViewModel()
+
+        viewModel.saveChanges(context: container.mainContext)
+
+        XCTAssertTrue(viewModel.showError)
+        XCTAssertFalse(viewModel.errorMessage.isEmpty)
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-    }
+    func testViewModelAllowsValidSave() throws {
+        let container = try ModelContainer(for: FoodItem.self, configurations: ModelConfiguration(isStoredInMemoryOnly: true))
+        let viewModel = AddModifyItemViewModel()
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
+        viewModel.temporaryFoodItem.name = "Carrots"
+        viewModel.temporaryFoodItem.category = "Fresh Produce"
+        viewModel.temporaryFoodItem.location = "Fridge"
+        viewModel.temporaryFoodItem.warningPeriod = 3
 
+        XCTAssertTrue(viewModel.canSave)
+
+        viewModel.saveChanges(context: container.mainContext)
+
+        XCTAssertFalse(viewModel.showError)
+    }
 }

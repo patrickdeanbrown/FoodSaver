@@ -3,6 +3,10 @@ import SwiftUI
 struct ImagePickerButton: View {
     @Binding var temporaryFoodItem: FoodItemTemp
 
+    private var availableSourceType: UIImagePickerController.SourceType {
+        UIImagePickerController.isSourceTypeAvailable(.camera) ? .camera : .photoLibrary
+    }
+
     var body: some View {
         Button(action: {
             temporaryFoodItem.showImagePicker = true
@@ -16,8 +20,9 @@ struct ImagePickerButton: View {
                     .foregroundColor(.gray)
             }
         }
+        .accessibilityLabel("Add or change photo")
         .sheet(isPresented: $temporaryFoodItem.showImagePicker) {
-            ImagePicker(image: $temporaryFoodItem.inputImage, sourceType: .camera)
+            ImagePicker(image: $temporaryFoodItem.inputImage, sourceType: availableSourceType)
                 .edgesIgnoringSafeArea(.all)
         }
     }
