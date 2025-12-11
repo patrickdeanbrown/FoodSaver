@@ -4,16 +4,21 @@ struct BestBeforeDatePicker: View {
     @Binding var bestBeforeDate: Date
 
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: 6) {
             Text("Best Before Date")
                 .font(Theme.headlineFont)
-                .foregroundColor(Theme.secondaryColor)
+                .foregroundColor(Theme.textSecondary)
             DatePicker("Select a Date", selection: $bestBeforeDate, displayedComponents: .date)
                 .datePickerStyle(GraphicalDatePickerStyle())
-                .padding(.vertical, 5)
-                .background(Color(UIColor.secondarySystemBackground))
-                .cornerRadius(8)
+                .padding(.vertical, 8)
+                .padding(.horizontal, 8)
+                .background(Theme.surfaceAlt)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 12)
+                        .stroke(Theme.border, lineWidth: 1)
+                )
+                .cornerRadius(12)
         }
-        .padding(.horizontal)
+        .padding(.horizontal, Theme.Spacing.md)
     }
 }

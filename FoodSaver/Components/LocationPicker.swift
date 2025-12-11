@@ -5,10 +5,10 @@ struct LocationPicker: View {
     let locations: [String]
 
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: 6) {
             Text("Location")
                 .font(Theme.headlineFont)
-                .foregroundColor(Theme.secondaryColor)
+                .foregroundColor(Theme.textSecondary)
             Menu {
                 ForEach(locations, id: \.self) { location in
                     Button(action: {
@@ -20,16 +20,21 @@ struct LocationPicker: View {
             } label: {
                 HStack {
                     Text(location.isEmpty ? "Select location" : location)
-                        .foregroundColor(location.isEmpty ? .gray : .primary)
+                        .foregroundColor(location.isEmpty ? Theme.textTertiary : Theme.textPrimary)
                     Spacer()
                     Image(systemName: "chevron.down")
-                        .foregroundColor(.gray)
+                        .foregroundColor(Theme.textTertiary)
                 }
-                .padding()
-                .background(Color(UIColor.secondarySystemBackground))
-                .cornerRadius(8)
+                .padding(.vertical, 12)
+                .padding(.horizontal, 14)
+                .background(Theme.surface)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 12)
+                        .stroke(Theme.border, lineWidth: 1)
+                )
+                .cornerRadius(12)
             }
         }
-        .padding(.horizontal)
+        .padding(.horizontal, Theme.Spacing.md)
     }
 }

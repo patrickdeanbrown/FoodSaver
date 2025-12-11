@@ -17,7 +17,7 @@ struct ImagePickerButton: View {
             } else {
                 Image(systemName: "camera.fill")
                     .makeFoodViewPhotoBox()
-                    .foregroundColor(.gray)
+                    .foregroundColor(Theme.textTertiary)
             }
         }
         .accessibilityLabel("Add or change photo")
