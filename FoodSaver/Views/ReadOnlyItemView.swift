@@ -27,7 +27,7 @@ struct ReadOnlyItemView: View {
                                 .foregroundColor(Theme.textTertiary)
                         }
 
-                        infoRow(title: "Best Before", value: "\(foodItem.bestBeforeDate, formatter: DateFormatter.mediumStyle)")
+                        infoRow(title: "Best Before", value: DateFormatter.mediumStyle.string(from: foodItem.bestBeforeDate))
                         infoRow(title: "Category", value: foodItem.category)
                         infoRow(title: "Location", value: foodItem.location)
                     }
