@@ -3,8 +3,9 @@ import SwiftData
 import ConfettiSwiftUI
 
 struct AddModifyItemView: View {
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) private var context
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @StateObject var viewModel: AddModifyItemViewModel
     @FocusState private var isInputActive: Bool
 
@@ -25,6 +26,10 @@ struct AddModifyItemView: View {
 
     // Confetti counter
     @State private var confettiCounter: Int = 0
+
+    private var isSaveDisabled: Bool {
+        !viewModel.canSave
+    }
 
     // Updated initializer to take a viewModel parameter
     init(viewModel: AddModifyItemViewModel) {
@@ -56,24 +61,36 @@ struct AddModifyItemView: View {
 
                 ActionButtons(
                     onCancel: {
-                        presentationMode.wrappedValue.dismiss()
+                        dismiss()
                     },
                     onSave: {
                         viewModel.saveChanges(context: context)
-                        if viewModel.isNewItem {
+                        guard !viewModel.showError else { return }
+
+                        if viewModel.isNewItem && !reduceMotion {
                             triggerConfetti()
                         }
                         // Delay dismissal to allow confetti to display
                         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                            presentationMode.wrappedValue.dismiss()
+                            dismiss()
                         }
                     }
                 )
+                .disabled(isSaveDisabled)
+                .opacity(isSaveDisabled ? 0.6 : 1)
                 .padding(.horizontal)
+
+                if isSaveDisabled {
+                    Text("Enter a name, category, and location to save.")
+                        .font(.footnote)
+                        .foregroundColor(.red)
+                        .padding(.horizontal)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                }
             }
         }
-        .navigationBarHidden(true)
-        .confettiCannon(counter: $confettiCounter, num: Constants.confettiCount, radius: Constants.confettiRadius)
+        .scrollDismissesKeyboard(.interactively)
+        .confettiCannon(counter: reduceMotion ? .constant(0) : $confettiCounter, num: Constants.confettiCount, radius: Constants.confettiRadius)
         .alert(isPresented: $viewModel.showError) {
             Alert(
                 title: Text("Error"),
@@ -84,6 +101,7 @@ struct AddModifyItemView: View {
     }
 
     private func triggerConfetti() {
+        guard !reduceMotion else { return }
         confettiCounter += 1
     }
 }
@@ -95,4 +113,3 @@ struct AddModifyItemView_Previews: PreviewProvider {
         AddModifyItemView(viewModel: viewModel)
     }
 }
-

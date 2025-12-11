@@ -73,6 +73,9 @@ struct FoodItemRow: View {
         )
         .padding(.vertical, 6) // Increased vertical padding between rows
         .animation(.spring(), value: foodItem.status) // Animate based on status changes too
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel("\(foodItem.name), \(foodItem.status.rawValue). Best before \(Self.dateFormatter.string(from: foodItem.bestBeforeDate)). Category \(foodItem.category). Location \(foodItem.location).")
+        .accessibilityHint("Swipe for actions like modify or delete.")
     }
 }
 

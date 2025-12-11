@@ -13,11 +13,12 @@ struct ItemNameField: View {
                 .focused($isInputActive)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding(.vertical, 5)
+                .textInputAutocapitalization(.words)
+                .textContentType(.name)
                 .overlay(
                     RoundedRectangle(cornerRadius: 8)
                         .stroke(isInputActive ? Theme.accentColor : Color.gray, lineWidth: 1)
                 )
-                .autocapitalization(.words)
         }
         .padding(.horizontal)
     }

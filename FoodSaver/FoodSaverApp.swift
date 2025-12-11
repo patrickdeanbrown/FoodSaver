@@ -16,7 +16,6 @@ struct FoodSaverApp: App {
         WindowGroup {
             SplashScreenView()
                 .modelContainer(modelContainer)
-                .preferredColorScheme(.light) // Centered around light cornflower blue
         }
     }
 }
