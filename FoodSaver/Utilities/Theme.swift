@@ -1,9 +1,12 @@
 import SwiftUI
+import UIKit
 
 struct Theme {
     // Palette (light/dark aware)
     private static func dynamic(_ light: Color, _ dark: Color) -> Color {
-        Color { scheme in scheme == .dark ? dark : light }
+        Color(UIColor { traitCollection in
+            traitCollection.userInterfaceStyle == .dark ? UIColor(dark) : UIColor(light)
+        })
     }
 
     // Brand accents
